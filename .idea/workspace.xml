@@ -16,26 +16,30 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1XkwYzQoFOyTdJF3SK92t2DtfNR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/registration" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\I_AM_ZION\Bimo\templates" />
+      <recent name="C:\Users\I_AM_ZION\Bimo\templates\Shop" />
+      <recent name="C:\Users\I_AM_ZION\Bimo\static\css" />
+      <recent name="C:\Users\I_AM_ZION\Bimo\static" />
+      <recent name="C:\Users\I_AM_ZION\Blog\templates" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\I_AM_ZION\Bimo\templates\registration" />
+      <recent name="C:\Users\I_AM_ZION\Bimo\static\assets" />
       <recent name="C:\Users\I_AM_ZION\Bimo\static" />
       <recent name="C:\Users\I_AM_ZION\Bimo\static\scss" />
       <recent name="C:\Users\I_AM_ZION\Bimo\static\css\css" />
-      <recent name="C:\Users\I_AM_ZION\Bimo\templates" />
-      <recent name="C:\Users\I_AM_ZION\Blog\Chat\templates" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\I_AM_ZION\Bimo\static\css" />
-      <recent name="C:\Users\I_AM_ZION\Bimo\templates" />
-      <recent name="C:\Users\I_AM_ZION\Bimo\static" />
-      <recent name="C:\Users\I_AM_ZION\Blog\templates" />
-      <recent name="C:\Users\I_AM_ZION\Blog\templates\registration" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -80,5 +84,16 @@
   </component>
   <component name="SvnConfiguration">
     <configuration />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

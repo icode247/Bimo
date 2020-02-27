@@ -7,5 +7,6 @@ UpdateView,
 DeleteView
 )
 
-class Bimo_Index(TemplateView):
+class Index(TemplateView):
     template_name = 'index.html'
+

@@ -25,7 +25,7 @@ PRODUCT_SIZE =  [
 ]
 class Shop(models.Model):
 
-    manager = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    #manager = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     shop_id = models.SlugField(default=auto_id)
     location = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
@@ -34,11 +34,11 @@ class Shop(models.Model):
     pvc = models.ImageField(default='noimage.png')
 
     def __str__(self):
-        return self.manager.username + '({})'.format(self.shop_id)
+        return self.shop_id + '({})'.format(self.shop_id)
 
 class Product(models.Model):
 
-    shop = models.ManyToManyField(Shop)
+    #shop = models.ManyToManyField(Shop)
     slug = models.SlugField(default=PRODUCT_ID)
     title = models.CharField(max_length=100)
     price = models.FloatField()
@@ -57,6 +57,7 @@ class Product(models.Model):
 
     def get_add_to_cart_url(self):
         return reverse('add_to_cart', kwargs={'slug':self.slug})
+
 
 class Ordered_Item(models.Model):
 
