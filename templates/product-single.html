@@ -7,7 +7,15 @@
     			<div class="col-lg-6 mb-5 ftco-animate">
     				<a href="images/product-1.png" class="image-popup prod-img-bg"><img src="{% static 'assets/images/product-1.png' %}" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
+
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
+					 {% if messages %}
+					   {% for message in messages %}
+						  <div class="aler alert-{{message.tags}}" role="alert">
+							  <p>{{message}}</p>
+						  </div>
+					   {% endfor%}
+    				 {% endif %}
     				<h3>{{object.title}}</h3>
     				<div class="rating d-flex">
 							<p class="text-left mr-4">
@@ -31,13 +39,18 @@
 							<div class="col-md-6">
 								<div class="form-group d-flex">
 		              <div class="select-wrap">
+
+	                </div>
+		            </div>
+							</div>
+							<div class="row mt-4">
+							<div class="col-md-6">
+								<div class="form-group d-flex">
+		              <div class="select-wrap">
 	                  <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-	                  <select name="" id="" class="form-control">
-	                  	<option value="">Small</option>
-	                    <option value="">Medium</option>
-	                    <option value="">Large</option>
-	                    <option value="">Extra Large</option>
-	                  </select>
+	                  <form method="post">
+
+					  </form>
 	                </div>
 		            </div>
 							</div>
@@ -50,7 +63,7 @@
 	            		</span>
 	             	<input type="text" id="quantity" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
 	             	<span class="input-group-btn ml-2">
-	                	<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+	                	<a href=""><button type="button" class="quantity-right-plus btn" data-type="plus" data-field="{{object.get_cart_url}}" >
 	                     <i class="ion-ios-add"></i>
 	                 </button>
 	             	</span>
@@ -60,7 +73,7 @@
 	          		<p style="color: #000;">80 piece available</p>
 	          	</div>
           	</div>
-          	<p><a href="{{object.get_add_to_cart_url}}" class="btn btn-black py-3 px-5 mr-2">Add to Cart</a><a href="cart.html" class="btn btn-primary py-3 px-5">Buy now</a></p>
+          	<p><a href="{{object.get_cart_url}}" class="btn btn-black py-3 px-5 mr-2">Add to Cart</a><a href="{% url 'Checkout'%}" class="btn btn-primary py-3 px-5">Buy Now</a></p>
     			</div>
     		</div>
 

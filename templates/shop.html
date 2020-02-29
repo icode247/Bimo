@@ -33,31 +33,31 @@
 			    						<p class="price"><span class="mr-2 price-dc">$400.00</span><span class="price-sale">${{product.price}}</span></p>
 			    					</div>
 			    					<p class="bottom-area d-flex px-3">
-		    							<a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-		    							<a href="#" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
+		    							<a href="{% url 'Product_Single' product.slug%}" class="buy-now text-center py-2 btn-block">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
 		    						</p>
 		    					</div>
 		    				</div>
 		    			</div>
 						{% endfor %}
 		    		</div>
+					{% if  is_paginated %}
 		    		<div class="row mt-5">
 		          <div class="col text-center">
 		            <div class="block-27">
 		              <ul>
-		                <li><a href="#">&lt;</a></li>
-		                <li class="active"><span>1</span></li>
-		                <li><a href="#">2</a></li>
-		                <li><a href="#">3</a></li>
-		                <li><a href="#">4</a></li>
-		                <li><a href="#">5</a></li>
-		                <li><a href="#">&gt;</a></li>
+						{% if page_obj.has_previous %}
+		                <li><a href="?page={{page_obj.previous_page_number}}">&lt;</a></li>
+						{% endif %}
+		                <li class="active"><a href="?page={{page_obj.number}}"><span>{{page_obj.number}}</span></a></li>
+						   {% if page_obj.has_next %}
+		                <li><a href="?page={{page_obj.next_page_number}}">&gt;</a></li>
+						   {% endif %}
 		              </ul>
 		            </div>
 		          </div>
 		        </div>
+					{% endif %}
 		    	</div>
-
 		    	<div class="col-md-4 col-lg-2">
 		    		<div class="sidebar">
 							<div class="sidebar-box-2">
