@@ -1,20 +1,23 @@
 {% extends 'base.html'%}
 {% block header %}
 {% load static %}
+{% load cart_template_tags%}
     <section class="ftco-section">
     	<div class="container">
     		<div class="row">
-    			<div class="col-lg-6 mb-5 ftco-animate">
-    				<a href="images/product-1.png" class="image-popup prod-img-bg"><img src="{% static 'assets/images/product-1.png' %}" class="img-fluid" alt="Colorlib Template"></a>
-    			</div>
+    			<div class="col-lg-4 mb-5 ftco-animate">
+    				<center><a href="images/product-1.png" class="image-popup prod-img-bg"><img src="{{object.sample.url}}" class="img-fluid" alt="sample"></a>
+    			</center>
+				</div>
 
-    			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
+    			<div class="col-lg-8 product-details pl-md-5 ftco-animate">
 					 {% if messages %}
-					   {% for message in messages %}
-						  <div class="aler alert-{{message.tags}}" role="alert">
-							  <p>{{message}}</p>
-						  </div>
-					   {% endfor%}
+							  {% for message in messages %}
+                                 <div class="alert alert-success alert-dismissible">
+								  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+								  <strong>{{message}}</strong>
+								</div>
+							  {% endfor %}
     				 {% endif %}
     				<h3>{{object.title}}</h3>
     				<div class="rating d-flex">
@@ -61,9 +64,9 @@
 	                   <i class="ion-ios-remove"></i>
 	                	</button>
 	            		</span>
-	             	<input type="text" id="quantity" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
+	             	<input type="text" id="quantity" name="quantity" class="quantity form-control input-number" value="{{request.user|Cart_item_quantity}}" min="1" max="100">
 	             	<span class="input-group-btn ml-2">
-	                	<a href=""><button type="button" class="quantity-right-plus btn" data-type="plus" data-field="{{object.get_cart_url}}" >
+	                	<a href="{{object.get_cart_url}}"><button type="button" class="quantity-right-plus btn" data-type="plus" data-field="" >
 	                     <i class="ion-ios-add"></i>
 	                 </button>
 	             	</span>
@@ -73,10 +76,10 @@
 	          		<p style="color: #000;">80 piece available</p>
 	          	</div>
           	</div>
-          	<p><a href="{{object.get_cart_url}}" class="btn btn-black py-3 px-5 mr-2">Add to Cart</a><a href="{% url 'Checkout'%}" class="btn btn-primary py-3 px-5">Buy Now</a></p>
+          	<p><a href="{{object.get_cart_url}}" class="btn btn-black py-3 px-5 mr-2">Add to Cart</a><a href="{% url 'Cart'%}" class="btn btn-primary py-3 px-5">Buy Now</a></p>
     			</div>
     		</div>
-
+			</div>
 
 
 
@@ -92,7 +95,7 @@
             </div>
           </div>
           <div class="col-md-12 tab-wrap">
-            
+
             <div class="tab-content bg-light" id="v-pills-tabContent">
 
               <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
@@ -240,7 +243,7 @@
         </div>
     	</div>
     </section>
-		
+
 
      <footer class="ftco-footer ftco-section">
       <div class="container">

@@ -7,25 +7,32 @@ UpdateView,
 DeleteView,
 View,
 )
-from . models import product,OrderedItem,Order
+from . models import product,OrderedItem,Order,BillingAddress,Payment,Contact
 from django.shortcuts import redirect,get_object_or_404,render,HttpResponse
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from django.contrib.auth import login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from .forms import Add_to_Cart
+from .forms import CheckoutForm
 from django.core.exceptions import ObjectDoesNotExist
+from django.conf import settings
+import stripe
+sripe_token_api = settings.STRIPE_SECRET_KEY
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 
-class Index(LoginRequiredMixin,TemplateView):
 
+class Index(LoginRequiredMixin,ListView):
+    context_object_name = 'products'
+    queryset = product.objects.order_by('-Date')
     template_name = 'index.html'
+    paginate_by = 8
 
 class Fashion(LoginRequiredMixin,ListView):
     context_object_name = 'products'
-    queryset = product.objects.all()
+    queryset = product.objects.filter(P_type='FS')
     template_name = 'shop.html'
     paginate_by = 6
 
@@ -36,34 +43,36 @@ class Product_Single(DeleteView):
 
 @login_required()
 def Electronics(request):
-  obj = get_list_or_404(product)
-  context = {'item':obj
-             }
+  products = product.objects.filter(P_type='EL')
+  context = {'Electronic':products}
   return render(request,'electronics.html',context)
 
 @login_required()
 def Computing(request):
-   products = product.objects.all()
+   products = product.objects.filter(P_type='CP')
    context = {'Computing':products}
    return render(request,'computing.html', context)
 
 @login_required()
 def Home_Office(request):
-   products = product.objects.order_by('-title')
-   return render(request,'electronics.html', {'Phones':products})
+   products = product.objects.filter(P_type="HO")
+   return render(request,'home_office.html', {'Home':products})
 
 @login_required()
 def Phones(request):
-     products = product.objects.order_by('-title')
-     return render(request,'electronics.html', {'Home_Ofice':product})
+     products = product.objects.filter(P_type="PT")
+     return render(request,'phone_tablet.html', {'Home_Office':products})
 
 
 class About(LoginRequiredMixin,TemplateView):
     template_name = 'about.html'
 
 
-class Contact(LoginRequiredMixin,TemplateView):
+class Contact(SuccessMessageMixin,LoginRequiredMixin,CreateView):
+    model = Contact
     template_name = 'contact.html'
+    fields = ['name','email','subject','message']
+   # success_message = 'Message successfully sent, We will get back to you'
 
 
 class Cart(LoginRequiredMixin,ListView):
@@ -71,16 +80,15 @@ class Cart(LoginRequiredMixin,ListView):
    template_name = 'cart.html'
 
 
-class Checkout(LoginRequiredMixin,View):
+class Cart(LoginRequiredMixin,View):
    def get(self, *args, **kwargs):
        try:
-           order = Order.objects.filter(user=self.request.user, status=False)
+           order = Order.objects.get(user=self.request.user, status=False)
            context = {
                'object':order
            }
            return render(self.request, 'cart.html', context)
        except ObjectDoesNotExist:
-            messages.error(self.request, "No item in your cart")
             return render(self.request, 'cart.html', context)
 
 
@@ -122,10 +130,10 @@ def remove_from_Cart(request, slug):
 
             messages.error(request, 'Item was removed from cart')
             order.items.remove(cart)
-            redirect('Product_Single', slug=slug)
+            redirect('Cart')
         else:
-            redirect('Product_Single', slug=slug)
-    return redirect("Product_Single", slug=slug)
+            redirect('Cart')
+    return redirect("Cart")
 
 
 def Customer_Signup(request):
@@ -167,11 +175,113 @@ class Add(LoginRequiredMixin,CreateView):
     fields = '__all__'
     template_name = 'add.html'
 
-def Order_summary(request, user):
-        order = OrderedItemr.objects.get(user=request.user, Odered= False)
-        context ={
-            "object":order
+class Checkout(View):
+    def get(self,*args, **kwargs):
+        form = CheckoutForm()
+        order = Order()
+        context = {
+            'form':form,
+            'order':order,
         }
-        return render(request, 'cart.html', context)
+        return render(self.request,'checkout.html', context)
+
+    def post(self,*args, **kwargs):
+        form = CheckoutForm(self.request.POST or None)
+        try:
+           order = Order.objects.get(user=self.request.user, status=False)
+           if form.is_valid():
+             country = form.cleaned_data.get('counntry')
+             street_address = form.cleaned_data.get('street_address')
+             apartment = form.cleaned_data.get('apartment')
+             Town = form.cleaned_data.get('Town')
+             zip = form.cleaned_data.get('zip')
+             Phone = form.cleaned_data.get('Phone')
+             Email = form.cleaned_data.get('Email')
+             same_billing_address = form.cleaned_data.get('same_billing_address')
+             save_info = form.cleaned_data.get('save_info ')
+             payment_method = form.cleaned_data.get('payment_method')
+
+             billing_address = BillingAddress(
+                 user = self.request.user,
+                 country=country,
+                 street_address = street_address,
+                 apartment = apartment,
+                 Town = Town,
+                 zip = zip,
+                 Phone = Phone,
+                 Email = Email
+             )
+             billing_address.save()
+             order.billing_address = billing_address
+             order.save()
+             messages.success(self.request,"Check out was successful")
+             return redirect('Checkout')
+          # messages.warning(self.request,"Checkout Failed")
+           return redirect('Payment')
+        except ObjectDoesNotExist:
+              return redirect('Payment')
+
+class Payment(View):
+    def get(self, *args, **kwargs):
+        return render(self.request,'payment.html')
+
+    def post(self, *args, **kwargs):
+        order = Order.objects.get(user = self.request.user, status = False)
+        token = self.request.POST.get('stripeToken')
+        amount = order.get_total() * 100
+
+        try:
+            charge = stripe.Charge.create(
+            amount = amount,
+            currency = 'usd',
+            source = token,
+            )
+            payment = Payment()
+            payment.strip_charge_id = charge['id']
+            payment.user = self.request.user
+            payment.amount = amount
+            payment.save()
+
+            order.status = True
+            order.payment = payment
+
+            messages.success(self.request, "You order was succesful")
+            return redirect('Cart')
+        except stripe.error.CardError as e:
+          # Since it's a decline, stripe.error.CardError will be caught
+
+          print('Status is: %s' % e.http_status)
+          print('Type is: %s' % e.error.type)
+          print('Code is: %s' % e.error.code)
+          # param is '' in this case
+          print('Param is: %s' % e.error.param)
+          print('Message is: %s' % e.error.message)
+          return redirect('Cart')
+        except stripe.error.RateLimitError as e:
+          # Too many requests made to the API too quickly
+          messages.error(self.request,'Rate limit error')
+          return redirect('Cart')
+        except stripe.error.InvalidRequestError as e:
+          # Invalid parameters were supplied to Stripe's API
+          messages.error(self.request,'Invalid request eror')
+          return redirect('Cart')
+        except stripe.error.AuthenticationError as e:
+          # Authentication with Stripe's API failed
+          # (maybe you changed API keys recently)
+          messages.error(self.request,'Authentification error')
+          return redirect('Cart')
+        except stripe.error.APIConnectionError as e:
+          # Network communication with Stripe failed
+          messages.error(self.request,'Network error ')
+          return redirect('Cart')
+        except stripe.error.StripeError as e:
+          # Display a very generic error to the user, and maybe send
+          # yourself an email
+          messages.error(self.request,'Stripe Error')
+          return redirect('Cart')
+        except Exception as e:
+          # Something else happened, completely unrelated to Stripe
+          messages.error(self.request,'we have been notifeid, we will get back to you.')
+          return redirect('Cart')
 
 

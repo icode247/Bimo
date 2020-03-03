@@ -1,0 +1,2441 @@
+/*
+ Theme Name:   15Zine Child Theme for 8DAYS Magazin
+ Description:  A child theme of the 15Zine theme by Codetipi
+ Author:       Igor Trepeschenok
+ Template:     15zine
+ Version:      2.0.11
+ Text Domain: cubell
+*/
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[Table of contents]
+    0. Firefox font fix
+	1. Header
+    2. Home Page
+    3. Home - A
+    4. Home - B/LP
+    5. Home - C
+    6. Footer
+    7. Sidebar
+    8. Sidebar search
+    9. Sidebar Mailchimp
+    10.Sidebar tags
+    11.Single post & page
+        - Typography
+    12. Images in posts
+    13. Horizontal line
+    14. Highlight
+    15. Blockquote
+    16. Authorbox
+    17. Author page
+    18. Related posts
+    19. Comments
+    20. Search
+    21. 404 Page
+    22. Category pages
+    23. CTAs in posts
+    24. Specific posts
+    25. Cookie Banner
+    26. Media
+    27. Homepage banner
+    28. Video Player
+    29. Anchor
+-------------------------------------------------------------------*/
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[0. Firefox font fix]
+*/
+
+html {
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@-moz-document url-prefix() {
+    body {
+        font-weight: normal !important;
+  }
+}
+
+body {
+    color: #313135!important;
+    font-size: 18px;
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[1. Header]
+*/
+
+/*********************
+Meta Menu
+*********************/
+
+#cb-top-menu {
+    background-color: #696C76!important;
+    height:60px!important;
+    line-height: 59px!important;
+    letter-spacing: 0px;
+
+  top: 0!important;
+width: 100%!important;
+   }
+
+#cb-top-menu .cb-left-side #menu-item-3796 a {
+    margin: 0;}
+
+
+
+#cb-top-menu .cb-left-side {
+    font-size: 14px;
+    letter-spacing: 0px!important;
+    
+}
+
+@media only screen and (max-width:1019px) {
+   #cb-top-menu > div > ul.cb-top-nav.cb-right-side > li:nth-child(2),
+    #cb-top-menu > div > ul.cb-top-nav.cb-right-side > li:nth-child(3),
+    #cb-top-menu > div > ul.cb-top-nav.cb-right-side > li:nth-child(4)
+    {
+        display: none!important;
+}
+}
+
+/*********************
+Orange CTA in header
+*********************/
+
+.extra-jmd-cta a {
+    font-family: "Brandon Text",sans-serif;
+    color: #ffffff;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: none;
+    letter-spacing: 0px;
+    height:36px;
+    line-height: 35px;
+    background-color: #FFB619;
+    padding: 0 10px;
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 -3px 0 0 #FF9500;
+    box-shadow: inset 0 -3px 0 0 #FF9500;
+    transition: all 0.25s ease-out;
+}
+
+
+.extra-jmd-cta a:hover {
+    background: #ff9600;
+     -webkit-box-shadow: inset 0 -3px 0 0 #f77d00;
+    box-shadow: inset 0 -3px 0 0 #f77d00;
+    text-decoration: none;
+    color:#ffffff!important;
+}
+
+
+/*********************
+Logo
+*********************/
+
+@media only screen and (min-width: 768px){
+    .cb-header #logo {
+        padding: 40px 0px;
+    }
+}
+
+
+/*********************
+Main Menu
+*********************/
+
+
+#cb-nav-bar .cb-main-nav {
+    letter-spacing: 0px;
+    font-size: 16px;
+}
+
+.cb-stuck.cb-menu-light #cb-nav-bar .cb-nav-bar-wrap {
+    background: hsla(0,0%,100%,.97)!important;
+}
+
+
+
+
+@media only screen and (min-width: 768px){
+    #cb-nav-bar{
+        margin-bottom: 22px!important;
+    }
+}
+
+.cb-main-nav li:nth-of-type(1) a {color:#c0d83f!important;}
+.cb-main-nav li:nth-of-type(5) a {color:#6bba4e!important;}
+.cb-main-nav li:nth-of-type(2) a {color:#5cc398!important;}
+.cb-main-nav li:nth-of-type(3) a {color:#17a7e3!important;}
+.cb-main-nav li:nth-of-type(4) a {color:#7f4d98!important;}
+.cb-main-nav a#cb-trend-menu-item {color:#FF9600!important;}
+
+.cb-menu-light #cb-nav-bar .cb-main-nav > li a:hover{
+    color:#ffffff!important;
+}
+
+.cb-menu-light #cb-nav-bar .cb-main-nav > li:nth-of-type(1):hover {
+    background: #c0d83f!important; color:#ffffff!important; 
+}
+.cb-menu-light #cb-nav-bar .cb-main-nav > li:nth-of-type(5):hover {
+    background: #6bba4e!important; color:#ffffff!important; 
+}
+.cb-menu-light #cb-nav-bar .cb-main-nav > li:nth-of-type(2):hover {
+    background: #5cc398!important;  color:#ffffff!important;
+}
+.cb-menu-light #cb-nav-bar .cb-main-nav > li:nth-of-type(3):hover {
+    background: #17a7e3!important;  color:#ffffff!important;
+}
+.cb-menu-light #cb-nav-bar .cb-main-nav > li:nth-of-type(4):hover {
+    background: #7f4d98!important; color:#ffffff!important; 
+}
+
+
+.cb-menu-light #cb-nav-bar .cb-main-nav {
+    border-bottom: 0px!important;
+}
+.cb-menu-light #cb-nav-bar .cb-nav-bar-wrap {
+    border-bottom: .05556rem solid rgba(0,0,0,.06)!important}
+
+/******************************************
+Main Menu Active category - archives
+******************************************/
+
+body.archive.category-inspiration ul.cb-main-nav li.menu-item-3798 a {
+    background: #c0d83f!important; color:#ffffff!important; 
+}
+
+body.archive.category-inspiration ul.cb-main-nav li.menu-item-3798:hover {
+    background: #c0d83f!important; color:#ffffff!important; opacity: 0.9!important;
+}
+
+
+body.archive.category-starting-your-business ul.cb-main-nav li.menu-item-3800 a {
+    background: #6bba4e!important; color:#ffffff!important; 
+}
+
+body.archive.category-starting-your-business ul.cb-main-nav li.menu-item-3800:hover {
+    background: #6bba4e!important; color:#ffffff!important; opacity: 0.9!important;
+}
+
+
+body.archive.category-business-tips ul.cb-main-nav li.menu-item-3797 a {
+    background: #5cc398!important; color:#ffffff!important; 
+}
+
+body.archive.category-business-tips ul.cb-main-nav li.menu-item-3797:hover {
+    background: #5cc398!important; color:#ffffff!important; opacity: 0.9!important;
+}
+
+body.archive.category-website-tips ul.cb-main-nav li.menu-item-3801 a {
+    background: #17a7e3!important; color:#ffffff!important; 
+}
+
+body.archive.category-website-tips ul.cb-main-nav li.menu-item-3801:hover {
+    background: #17a7e3!important; color:#ffffff!important; opacity: 0.9!important;
+}
+
+body.archive.category-news ul.cb-main-nav li.menu-item-3799 a {
+    background: #7f4d98!important; color:#ffffff!important; 
+}
+
+body.archive.category-news ul.cb-main-nav li.menu-item-3799:hover {
+    background: #7f4d98!important; color:#ffffff!important; opacity: 0.9!important;
+}
+
+
+/******************************************
+Main Menu Active category - single
+******************************************/
+
+body.single-post.inspiration ul.cb-main-nav li.menu-item-3798 a {
+    background: #c0d83f!important; color:#ffffff!important; 
+}
+
+body.single-post.inspiration ul.cb-main-nav li.menu-item-3798:hover {
+    background: #c0d83f!important; color:#ffffff!important; opacity: 0.9!important;
+}
+
+
+body.single-post.starting-your-business ul.cb-main-nav li.menu-item-3800 a {
+    background: #6bba4e!important; color:#ffffff!important; 
+}
+
+body.single-post.starting-your-business ul.cb-main-nav li.menu-item-3800:hover {
+    background: #6bba4e!important; color:#ffffff!important; opacity: 0.9!important;
+}
+
+
+body.single-post.business-tips ul.cb-main-nav li.menu-item-3797 a {
+    background: #5cc398!important; color:#ffffff!important; 
+}
+
+body.single-post.business-tips ul.cb-main-nav li.menu-item-3797:hover {
+    background: #5cc398!important; color:#ffffff!important; opacity: 0.9!important;
+}
+
+body.single-post.website-tips ul.cb-main-nav li.menu-item-3801 a {
+    background: #17a7e3!important; color:#ffffff!important; 
+}
+
+body.single-post.website-tips ul.cb-main-nav li.menu-item-3801:hover {
+    background: #17a7e3!important; color:#ffffff!important; opacity: 0.9!important;
+}
+
+body.single-post.news ul.cb-main-nav li.menu-item-3799 a {
+    background: #7f4d98!important; color:#ffffff!important; 
+}
+
+body.single-post.news ul.cb-main-nav li.menu-item-3799:hover {
+    background: #7f4d98!important; color:#ffffff!important; opacity: 0.9!important;
+}
+
+/******************************************
+Mobile menu
+******************************************/
+
+.cb-mob-menu, .cb-mob-menu .cb-mob-close-wrap {
+    background: #696C76!important;
+}
+
+.cb-mob-menu .cb-mob-menu-wrap {
+    padding-top: 20px !important;
+}
+
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[2. Home Page]
+*/
+
+body {
+    color: #313135!important;
+}
+
+
+/*********************
+Modules
+*********************/
+
+.cb-module-title {
+    font-size: 1.33em!important;
+    line-height: 2em!important;
+	letter-spacing: 2.5px!important;
+	color:#313135!important;
+    font-weight: bold!important;
+    text-transform: uppercase!important;
+}
+
+.cb-module-header p {
+	font-size: 16px!important;
+	color:#313135!important;
+	letter-spacing: 0px!important;
+	text-transform:none!important;
+	font-weight:400!important;
+}
+
+
+/*********************
+horizontal Lines
+*********************/
+
+.cb-body-light .cb-module-header .cb-module-title:after {
+    background: #313135!important;
+	height: 4px!important;
+    position: static!important  ;
+}
+
+@media only screen and (max-width: 767px){
+    .cb-body-light .cb-module-header .cb-module-title:after{
+        position: absolute!important;}
+}
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[3. Section A]
+*/
+
+/*********************
+ Section A underlines
+*********************/
+#cb-section-a article:after{
+	height:4px;
+	width:100%;
+	content:'';
+	position:absolute;
+	bottom:-10px;
+}
+
+#cb-section-a article#Inspiration:after{
+    background:#c0d83f;}
+
+
+#cb-section-a article[id='Starting Your Business']:after{
+    background:#6bba4e;}
+
+
+#cb-section-a article[id='Business Tips']:after{
+    background:#5cc398;}
+
+
+#cb-section-a article[id='Website Tips']:after{
+    background:#17a7e3;}
+
+
+#cb-section-a article#News:after{
+    background:#7f4d98;}
+
+#cb-section-a article[id='News']:after{
+    background:#7f4d98;}
+
+
+@media only screen and (max-width: 480px){
+    #cb-section-a article:after{
+        display: none;
+    }
+}
+
+/*********************
+ Section A titles
+*********************/
+
+#cb-section-a .cb-post-title{
+	text-transform:none!important;
+	letter-spacing: 0px;
+	font-size:1.88em;
+    line-height: 1.18em;
+}
+
+.cb-byline .cb-date {
+    letter-spacing: 0px!important;
+	font-size:14px!important;
+}
+
+
+@media screen and (max-width: 700px) and (min-width: 481px) {
+    #cb-section-a .cb-post-title{
+        font-size: 22px!important;
+        line-height: 28px!important;
+    }
+    #cb-section-a div.cb-meta.cb-article-meta > div {
+        display: none!important;
+    }
+}
+
+
+@media screen and (max-width: 1020px)  and (min-width: 700px) {
+    #cb-section-a .cb-post-title{
+        font-size:28px!important;
+        line-height: 36px!important;
+    
+    }
+}
+
+#cb-section-a .cb-single-link .cb-article-meta {
+    display: none!important;
+}
+
+
+/*********************
+ Section A images
+*********************/
+
+.cb-module-block .cb-article-big.cb-meta-style-2.cb-article-review img {
+    opacity: 0.6!important;
+}
+
+.cb-module-block .cb-article-big.cb-meta-style-2.cb-article-review img:hover {
+    opacity: 0.4!important;
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[4. Section B/LatestPosts]
+*/
+
+#cb-section-b h2.cb-post-title, #cb-section-lp h2.cb-post-title
+{
+    font-size: 1.33em!important;
+    line-height: 1.33em!important;
+    letter-spacing: 0px!important;
+    text-transform:none!important;    
+}
+
+#cb-section-b .cb-post-title a, #cb-section-lp .cb-post-title a  {
+    color:#313135!important; 
+}
+
+#cb-section-b .cb-byline .cb-date, #cb-section-lp .cb-byline .cb-date {
+    letter-spacing: 0px!important;
+	text-align:left!important;
+	font-size:12px!important;
+    color:#7D818F!important;
+}
+
+#cb-section-b .cb-excerpt, #cb-section-lp .cb-excerpt {
+	letter-spacing: 0px;
+	font-size:14px;
+	color:#313135!important;
+}
+
+ .cb-separated {
+    border-bottom: 2px solid #F4F5F9!important;
+}
+
+
+
+#cb-section-b .cb-module-block {
+    margin-bottom: 100px;
+}
+
+/*********************
+ Section B/LP and other pages Meta
+*********************/
+
+.cb-post-meta .cb-element a, .cb-body-light .cb-tags a {
+    color: #696c76!important;
+    background: none!important;
+    border: 2px solid #cacedb!important;
+    box-shadow: none!important;
+    line-height: 30px!important;
+    padding: 0 15px!important;
+    font-size: 14px!important;
+    letter-spacing: 0!important;
+    text-transform: none!important;
+    border-radius: 4px!important;
+}
+
+.cb-post-meta .cb-element a:hover, .cb-body-light .cb-tags a:hover {
+    color: #1ba9e1!important;
+    border-color: #a1daf0!important;
+    background: none!important;
+    box-shadow: none!important;
+}
+
+/*********************
+ Section B/ and other pages Meta categories
+*********************/
+
+
+.category-inspiration .cb-post-meta .cb-category.cb-element a
+{
+    color: #ffffff!important;
+    background: #c0d83f!important;
+    border:none!important;
+    box-shadow: inset 0 -3px 0 0 #92be47!important;
+    line-height: 34px!important;
+}
+
+.category-inspiration .cb-post-meta .cb-category.cb-element a:hover {
+    background-color: #92be47!important;
+    box-shadow: inset 0 -3px 0 0 #74A835!important;
+}
+
+.category-starting-your-business .cb-post-meta .cb-category.cb-element a
+{
+    color: #ffffff!important;
+    background: #6bba4e!important;
+    border:none!important;
+    box-shadow: inset 0 -3px 0 0 #349f40!important;
+    line-height: 34px!important;
+}
+
+.category-starting-your-business .cb-post-meta .cb-category.cb-element a:hover {
+    background-color: #349f40!important;
+    box-shadow: inset 0 -3px 0 0 #318237!important;
+}
+
+.category-business-tips .cb-post-meta .cb-category.cb-element a
+{
+    color: #ffffff!important;
+    background: #5cc398!important;
+    border:none!important;
+    box-shadow: inset 0 -3px 0 0 #00a983!important;
+    line-height: 34px!important;
+}
+
+.category-business-tips .cb-post-meta .cb-category.cb-element a:hover {
+    background-color: #00a983!important;
+    box-shadow: inset 0 -3px 0 0 #118A70!important;
+}
+
+.category-website-tips .cb-post-meta .cb-category.cb-element a
+{
+    color: #ffffff!important;
+    background: #17a7e3!important;
+    border:none!important;
+    box-shadow: inset 0 -3px 0 0 #1E8BC9!important;
+    line-height: 34px!important;
+}
+
+.category-website-tips .cb-post-meta .cb-category.cb-element a:hover {
+    background-color: #1E8BC9!important;
+    box-shadow: inset 0 -3px 0 0 #006ea6!important;
+}
+
+.category-news .cb-post-meta .cb-category.cb-element a
+{
+    color: #ffffff!important;
+    background: #7f4d98!important;
+    border:none!important;
+    box-shadow: inset 0 -3px 0 0 #703d7f!important;
+    line-height: 34px!important;
+}
+
+.category-news .cb-post-meta .cb-category.cb-element a:hover {
+    background-color: #703d7f!important;
+    box-shadow: inset 0 -3px 0 0 #5A2E73!important;
+}
+
+.home #cb-section-lp .cb-category.cb-element a {
+    display:none!important;
+}
+
+
+
+/*********************
+ Section B/LP and other Read More button
+*********************/
+
+#cb-section-lp .cb-pagination-button a {
+    -webkit-transition: all 0.35s;
+    -transition: all 0.35s;
+    transition: all 0.35s;
+    color: #696c76!important;
+    background: none!important;
+    border: 2px solid #cacedb!important;
+    box-shadow: none!important;
+    line-height: 46px!important;
+    height:50px;
+    padding: 0 10px!important;
+    font-size: 16px!important;
+    letter-spacing: 0!important;
+    text-transform: none!important;
+    border-radius: 4px!important;
+    width: 35%;
+}
+
+#cb-section-lp .cb-pagination-button a:hover {
+    color: #1ba9e1!important;
+    border-color: #a1daf0!important;
+    background: none!important;
+    box-shadow: none!important;
+}
+
+.cb-no-more-posts {
+    display:none!important;
+}
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[5. Section C]
+*/
+
+#cb-section-c .post h2 {
+	text-transform:none!important;
+	letter-spacing: 0px!important;
+	text-align:left!important;
+    font-size:1.88em;
+    line-height: 1.18em;
+}
+
+
+
+@media screen and (max-width: 700px) and (min-width: 481px) {
+    #cb-section-c .post h2{
+        font-size: 22px!important;
+        line-height: 28!important;
+    }
+}
+
+
+@media screen and (max-width: 1020px)  and (min-width: 700px) {
+    #cb-section-c .post h2{
+        font-size:28px!important;
+        line-height: 36px!important;
+    
+    }
+}
+
+
+/*********************
+ Section С underlines
+*********************/
+
+#cb-section-c li.type-post{
+    margin-bottom: 20px;
+}
+
+
+#cb-section-c li.type-post:after{
+    height:4px;
+	width:100%;
+	content:'';
+	position:absolute;
+	bottom:-10px;
+}
+
+
+#cb-section-c li.type-post.category-inspiration:after{
+	background:#c0d83f;
+}
+
+#cb-section-c li.type-post.category-starting-your-business:after{
+	background:#6bba4e;
+}
+
+#cb-section-c li.type-post.category-business-tips:after{
+	background:#5cc398;
+}
+
+#cb-section-c li.type-post.category-website-tips:after{
+	background:#17a7e3;
+}
+
+#cb-section-c li.type-post.category-news:after{
+	background:#7f4d98;
+}
+
+/*********************
+ Section С slider controls
+*********************/
+
+#cb-section-c  .flex-direction-nav {
+    display: none!important;
+}
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[6. Footer]
+*/
+
+.cb-footer-light .cb-footer-lower {
+   	background: #ffffff!important;
+}
+
+.cb-footer-light #cb-footer {
+    background-color: #F4F5F9!important;
+}
+
+.cb-footer-light .cb-to-top a i {
+    border: 0px!important;
+}
+
+#cb-to-top > i {
+    color:#4E5056;
+}
+
+#cb-footer .cb-footer-lower { 
+    padding: 30px 0 50px!important;
+}
+
+@media only screen and (min-width: 768px){
+#cb-footer #cb-widgets {
+    padding: 30px 0!important;
+    }
+}
+
+
+/*********************
+Footer menu
+*********************/
+
+#cb-footer .cb-footer-nav a {
+    letter-spacing: 0!important;
+    font-size: 16px!important;
+}
+
+#cb-footer .cb-footer-lower .cb-footer-links ul li {
+    margin: 5px 15px!important;
+}
+
+#cb-footer .cb-footer-nav li:nth-of-type(1) a {
+    color:#c0d83f;
+}
+
+#cb-footer .cb-footer-nav li:nth-of-type(5) a {
+    color:#6bba4e;
+}
+
+#cb-footer .cb-footer-nav li:nth-of-type(2) a {
+    color:#5cc398;
+}
+
+#cb-footer .cb-footer-nav li:nth-of-type(3) a {
+    color:#17a7e3;
+}
+
+#cb-footer .cb-footer-nav li:nth-of-type(4) a {
+    color:#7f4d98;
+}
+
+#cb-footer .cb-footer-nav .menu-item > a:hover {
+    opacity:0.8!important;
+    border-bottom: 2px solid;
+    -webkit-transition: 0.18s all ease;
+    -transition: 0.18s all ease;
+    transition: 0.18s all ease;
+
+} 
+
+#cb-footer .cb-footer-lower .cb-footer-links ul li:before {
+    display:none!important;
+}
+
+#j-footer-meta {
+    display: block;
+	text-align:right;
+	color:#9499A9;
+}
+
+
+#j-footer-meta a {
+	text-transform:uppercase;
+	letter-spacing: 0px;
+	text-align:right;
+    font-size:14px;
+    font-weight:bold;
+	color:#9499A9!important;}
+
+#j-footer-meta a:hover, #j-footer-meta a:active{color:#1e8bc9!important;}
+
+@media only screen and (max-width: 770px){
+    #j-footer-meta a, #j-footer-meta, #text-3.cb-footer-widget > div {
+        text-align:center!important;
+    }
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[7. Sidebar]
+*/
+
+.cb-sidebar {
+    background: #FAFAFC!important;
+}
+
+
+.cb-sidebar {
+    padding:0!important;
+}
+
+.cb-sidebar div.cb-sidebar-widget {
+    padding:0 30px 0 30px!important;
+}
+
+.cb-sidebar div.cb-sidebar-widget:first-child {
+    padding:30px 30px 10px 30px!important;
+}
+
+
+.cb-sidebar div.cb-sidebar-widget:last-child {
+    padding:0px 30px 40px 30px!important;
+}
+
+
+
+.cb-sidebar .cb-widget-title {
+    border-bottom: 0!important;
+    font-size: 24px!important;
+    color: #313135!important;
+    letter-spacing: 0px!important;
+	text-transform:none!important;
+
+}
+
+.cb-body-light .cb-sidebar-widget a {
+    color:#696C76!important;
+}
+
+
+/*********************
+Latest/Popular posts
+*********************/
+
+
+.cb-sidebar .cb-widget-latest-articles h4.cb-post-title, .cb-sidebar .cb-widget-popular-posts h4.cb-post-title {
+    color: #313135!important;
+    font-size: 1em!important;
+    line-height: 1.33em!important;
+    font-weight: bold!important;
+    text-transform: none!important;
+    text-align: left!important;
+    letter-spacing: 0!important;
+}
+
+.cb-sidebar .cb-widget-latest-articles h4.cb-post-title a:hover, .cb-sidebar .cb-widget-popular-posts h4.cb-post-title a:hover {
+    color:#1ba9e1!important;
+}
+ 
+.cb-sidebar .cb-widget-latest-articles .cb-date {
+	font-size:12px!important;
+}
+
+
+/*********************
+Categories
+*********************/
+
+.widget_extended-categories .cb-widget-title {
+    margin: 0 0 0 0!important;
+}
+
+.widget_extended-categories li {
+    font-size: 14px;
+    font-weight: bold;
+    color:#696C76;
+}
+
+.widget_extended-categories li:before{
+	font-family: FontAwesome;
+	content: "\f105";
+   	font-size: 28px;
+    margin: 0 10px 0 0;
+    line-height: 28px;
+    position: relative;
+    top: 4px;
+	font-weight:lighter;
+}
+
+.widget_extended-categories ul li:nth-of-type(1):before{color:#c0d83f!important;}
+.widget_extended-categories ul li:nth-of-type(5):before{color:#6bba4e!important;}
+.widget_extended-categories ul li:nth-of-type(2):before{color:#5cc398!important;}
+.widget_extended-categories ul li:nth-of-type(3):before{color:#17a7e3!important;}
+.widget_extended-categories ul li:nth-of-type(4):before{color:#7f4d98!important;}
+
+.widget_extended-categories ul li a:hover{
+    color:#1ba9e1!important;
+} 
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[8. Search in Sidebar]
+*/
+
+.cb-sidebar .widget_search .cb-search .cb-search-field {
+    width: 100%!important;
+    font-size: 16px!important;
+    outline: none!important;
+    background: #fafafc!important;
+    border: 0!important;
+    border-bottom: 2px solid #4E5056!important;
+    color:#4E5056!important;
+    padding: 0px 80px 0px 0px!important;
+    height: 50px!important;
+}
+
+
+.cb-sidebar .cb-sidebar-widget .cb-search input, .widget_search .cb-search .cb-search-submit {
+     color:#4E5056!important; 
+}
+
+.cb-sidebar .widget_search .cb-search .cb-search-submit {
+    top: -4px!important;
+    width: 23px!important;
+}
+
+.cb-sidebar .cb-sidebar-widget.widget_search ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #4E5056!important;
+}
+.cb-sidebar .cb-sidebar-widget.widget_search ::-moz-placeholder { /* Firefox 19+ */
+    color: #4E5056!important;
+    opacity: 1!important;
+}
+.cb-sidebar .cb-sidebar-widget.widget_search :-ms-input-placeholder { /* IE 10+ */
+  color: #4E5056!important;
+}
+.cb-sidebar .cb-sidebar-widget.widget_search:-moz-placeholder { /* Firefox 18- */
+    color: #4E5056!important;
+    opacity: 1!important;
+}
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[9. Mailchimp form sidebar & posts]
+*/
+
+.cb-sidebar .mc4wp-form label {
+    line-height:29px;padding-bottom:15px;
+}
+
+.cb-sidebar .mc4wp-form input[type="email"] {
+    color:#313135;
+    border-width: 0px;
+    font-size: 12px;
+}
+
+
+.cb-sidebar .mc4wp-form {
+    padding: 15px 30px 20px 30px;
+}
+
+.mc4wp-form-4067 input[type='submit'],
+.mc4wp-form-4067 input[type='button'],
+.mc4wp-form-4067 button {
+        background-color: #DE4563;
+        box-shadow: inset 0 -3px 0 0 #C23049!important;
+        border-width: 0px!important;
+        font-weight: bold;
+}
+
+.mc4wp-form-4067 input[type='submit']:focus,
+.mc4wp-form-4067 input[type='button']:focus,
+.mc4wp-form-4067 button:focus,
+.mc4wp-form-4067 input[type='submit']:hover,
+.mc4wp-form-4067 input[type='button']:hover,
+.mc4wp-form-4067 button:hover {
+        background-color: #C23049!important;
+        box-shadow: inset 0 -3px 0 0 #aa2c42!important;
+        border-width: 0px!important;
+        font-weight: bold;
+}
+
+.cb-sidebar .mc4wp-form .mc4wp-alert p {
+    font-size: 16px;
+    line-height: 1.5;    
+}
+
+
+article.post .mc4wp-form input[type="email"],
+article.page .mc4wp-form input[type="email"]{
+    color:#313135;
+    font-size: 16px!important;
+}
+
+article.post .mc4wp-form {
+    padding: 30px 10px 50px;
+    Margin:40px 0 40px;
+}
+
+article.page .mc4wp-form{
+    padding: 30px 10px 50px;
+    Margin:60px 0 80px;
+}
+
+article.post .mc4wp-form label,
+article.page .mc4wp-form label{
+    line-height: 1.4;
+    padding:0 40px 5px;
+}
+
+article.post .mc4wp-form div.mc4wp-response > div > div,
+article.page .mc4wp-form div.mc4wp-response > div > div{
+    padding:0 40px 5px;
+}
+
+article.post .mc4wp-form div.mc4wp-response > div > div > p,
+article.page .mc4wp-form div.mc4wp-response > div > div > p{
+    margin-bottom: 0px;
+}
+
+
+article.post .mc4wp-form input ,
+article.page .mc4wp-form input {margin-top: 10px;}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[10. Tag cloud]
+*/
+
+.cb-sidebar .widget_tag_cloud div.tagcloud a {
+    color: #696c76!important;
+    background: none!important;
+    border: 2px solid #cacedb!important;
+    box-shadow: none!important;
+    line-height: 30px!important;
+    padding: 0 15px!important;
+    font-size: 14px!important;
+    letter-spacing: 0!important;
+    text-transform: none!important;
+    border-radius: 4px!important;
+}
+
+.cb-sidebar .widget_tag_cloud div.tagcloud a:hover {
+    color: #1ba9e1!important;
+    border-color: #a1daf0!important;
+    background: none!important;
+    box-shadow: none!important;
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[11. Single Post/Page]
+*/
+
+body.page h1.cb-module-title:after {
+    display:none!important;
+}
+
+body.single-post h1, body.single-post .cb-byline {
+    text-align: left;
+}
+
+.cb-entry-content p a, .cb-entry-content li a, .cb-alert a {
+    color:#1e8bc9!important;
+}
+
+/*********************
+Post Header
+*********************/
+
+
+.cb-stuck.cb-menu-light #cb-nav-bar .cb-nav-bar-wrap {
+    background: hsla(0,0%,100%,.97)!important;
+}
+
+
+body.single-post .cb-byline {
+	letter-spacing:0px!important;
+	color:#696C76!important;
+	font-size:14px!important;
+}
+
+body.single-post .cb-date {
+    color:#696C76;
+}
+
+.single-post .cb-byline .cb-category a {
+	color:#696C76!important;
+}
+
+article.post .cb-post-meta .cb-comments {display:none!important;}
+
+.fa-remove:before, .fa-close:before, .fa-times:before {
+    content: "\f111"!important;
+}
+
+body.single-post.cb-fis-big-border .cb-byline {
+  margin-top: 20px;
+}
+
+/*********************
+Gallery Post Header
+*********************/
+
+#cb-featured-image.cb-gallery-post-wrap h1.entry-title {
+    color:#ffffff!important;
+    text-align: center!important;
+}
+
+
+#cb-featured-image.cb-gallery-post-wrap .cb-byline {
+    text-align: center!important;
+}
+
+#cb-featured-image.cb-gallery-post-wrap .cb-byline .cb-date  {
+    color:#ffffff!important;
+}
+
+@media only screen and (min-width: 768px){
+
+    .cb-gallery-post-wrap .cb-slider-arrow {
+        border-radius: 4px!important;
+        border: 2px solid #fff!important;
+    }
+}
+    
+
+@media only screen and (min-width: 768px){
+    body.single-format-gallery #cb-nav-bar {
+        margin-bottom:0px!important;
+}
+}
+    
+/*********************
+Post Header categories color
+*********************/
+
+body.single-post.cb-fis-big-border.inspiration #cb-content span.cb-category.cb-element > a{
+    color:#c0d83f!important;
+}
+
+body.single-post.cb-fis-big-border.starting-your-business #cb-content span.cb-category.cb-element > a{
+    color:#6bba4e!important;
+}
+
+body.single-post.cb-fis-big-border.business-tips #cb-content span.cb-category.cb-element > a{
+    color:#5cc398!important;
+}
+
+body.single-post.cb-fis-big-border.website-tips #cb-content span.cb-category.cb-element > a{
+    color:#17a7e3!important;
+}
+
+body.single-post.cb-fis-big-border.news #cb-content span.cb-category.cb-element > a{
+    color:#7f4d98!important;
+}
+
+/*********************
+Single post tags
+*********************/
+
+.cb-post-footer-block {
+    margin: 0px 0 80px!important;
+}
+
+
+/*********************
+Single post typography
+*********************/
+
+@media only screen and (max-width: 500px) {
+    body.single-post h1, 
+    body.page article h1,
+    body.page #cb-content h1.cb-module-title{
+        font-weight: bold!important;
+        color: #313135!important;
+        font-size: 34px!important;
+        line-height: 45px!important;
+        letter-spacing: 0!important;
+        text-transform:none!important;
+    
+}
+}
+
+@media only screen and (min-width: 500px) {
+body.single-post h1, 
+body.page article h1,
+body.page #cb-content h1.cb-module-title{
+    font-weight: bold!important;
+    color: #313135!important;
+    font-size: 44px!important;
+    line-height: 56px!important;
+    letter-spacing: 0!important;
+    text-transform:none!important;
+    
+}
+}
+
+body.single-post h2, body.page article h2 {
+    font-weight: bold!important;
+    color: #313135!important;
+    font-size: 34px!important;
+    line-height: 40px!important;
+    text-transform:none!important;
+    letter-spacing: 0!important;
+    text-transform:none!important;
+}
+
+body.single-post h3, body.page article h3 {
+    font-weight: bold!important;
+    color: #313135!important;
+    font-size: 28px!important;
+    line-height: 36px!important;
+    letter-spacing: 0!important;
+    text-transform:none!important;
+}
+
+body.single-post h4, body.page article h4 {
+    font-weight: bold!important;
+    color: #313135!important;
+    font-size: 24px!important;
+    line-height: 32px!important;
+    letter-spacing: 0!important;
+    text-transform:none!important;
+}
+
+
+body.single-post h5, body.page article h5 {
+    font-weight: bold!important;
+    color: #313135!important;
+    font-size: 22px!important;
+    line-height: 28px!important;
+    letter-spacing: 0!important;
+    text-transform:none!important;
+}
+
+
+/*********************
+Single post lists
+*********************/
+
+.post .cb-entry-content ul {
+    list-style-position: outside!important;
+    padding-left: 40px;
+    list-style-type: disc!important;
+}
+
+.post .cb-entry-content ol{
+    list-style-position: outside!important;
+    padding-left: 40px; 
+}
+
+.post .cb-entry-content ol li, .post .cb-entry-content ul li {
+    padding: 0 0 0 10px;
+}
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[12. Images]
+*/
+
+.cb-fis .cb-fis-bg-ldd {
+    opacity: 1!important;
+}
+
+.img-profile {
+    border-radius: 100%;}
+
+.postid-925 .img-profile {
+    margin-top: 11px!important;
+}
+
+.post .cb-entry-content .alignnone {
+  position: relative;
+  max-width: 100%;
+  padding: 37px 0;
+}
+
+
+.post  .cb-entry-content .aligncenter {
+  padding: 37px 0;
+}
+
+.post .cb-entry-content .wp-caption-text,
+.page .cb-entry-content .wp-caption-text{
+    font-size: 14px;
+    font-style: normal!important;
+    color: #313135;
+    padding-top: 10px!important;
+}
+
+
+.post .cb-entry-content .size-full.cb-fs-img {
+    padding: 80px 0;
+}
+
+
+/*********************
+Screenshots
+*********************/
+
+.post .cb-entry-content .img-screenshot,
+.page .cb-entry-content .img-screenshot {
+    box-shadow: 0 0.55556rem 2.22222rem 0 rgba(0,0,0,.1);
+
+}
+
+.post .cb-entry-content img.img-screenshot.aligncenter,.post .cb-entry-content img.img-screenshot.alignnone,
+.page .cb-entry-content img.img-screenshot.aligncenter,.page .cb-entry-content img.img-screenshot.alignnone{
+    box-shadow: 0 0.55556rem 2.22222rem 0 rgba(0,0,0,.1);
+    padding: 0;
+    margin-top:50px;
+    margin-bottom:50px;
+
+}
+
+.post .cb-entry-content  .fourcol .img-screenshot.aligncenter {
+    margin-top:0px;
+}
+
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[13. Horizontal line]
+*/
+
+hr {
+    width: 10%;
+    height: 4px!IMPORTANT;
+    background-color: #F4F5F9;
+    color: #F4F5F9;
+    border: 0 none;
+    margin: 60px 0 60px 0;
+}
+
+body.single-post article.category-inspiration hr {
+    background-color: #92BF33;
+    color: #92BF33;
+}
+
+body.single-post article.category-starting-your-business hr {
+    background-color: #68B64D;
+    color: #68B64D;
+}
+
+body.single-post article.category-business-tips hr {
+    background-color: #57C097;
+    color: #57C097;
+}
+
+body.single-post article.category-website-tips hr {
+    background-color: #0DAAE2;
+    color: #0DAAE2;
+}
+
+body.single-post article.category-news hr {
+    background-color: #7f5295;
+    color: #7f5295;
+}
+
+body.page article.page hr {
+    background-color: #8197D4;
+    color: #8197D4;
+}
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[14. Highlight]
+*/
+
+.post .cb-entry-content .cb-alert {
+    width: 100%;
+    padding:18px 32px 15px!important;
+    margin: 55px 0 55px!important;
+    border: 0px;
+    text-align: left!important;
+    background: #ffffff!important;
+    letter-spacing: 0!important;
+    color: #313135!important;
+}
+
+
+.post .cb-entry-content .cb-alert+h2{
+    margin-top: 85px!important;
+} 
+
+.cb-alert h2,.cb-alert h3,.cb-alert h4,.cb-alert h1 {
+    color: #313135!important;
+    font-size: 1.33em!important;
+    line-height: 1.33em!important;
+    font-weight: bold!important;
+    margin: 0px!important;
+    padding-bottom: 10px;
+}
+
+.post .cb-entry-content .cb-alert p {
+    margin: 0px!important;
+    padding-bottom: 7px;
+}
+
+
+
+article.category-inspiration .cb-alert {
+    border-left:8px solid #92BF33!important;
+}
+
+article.category-starting-your-business .cb-alert {
+    border-left:8px solid #68B64D!important;
+}
+
+article.category-business-tips .cb-alert {
+    border-left:8px solid #57C097!important;
+}
+
+article.category-website-tips .cb-alert {
+    border-left:8px solid #0DAAE2!important;
+}
+
+article.category-news .cb-alert {
+    border-left:8px solid #7f5295!important;
+}
+
+article.page .cb-entry-content .cb-alert {
+    width: 100%;
+    padding-left: 32px;
+    padding-bottom: 5px;
+    padding-top: 5px;    
+    margin: 60px 0 60px!important;
+    border: 0px;
+    text-align: left!important;
+    background: #ffffff!important;
+    letter-spacing: 0!important;
+    border-left:8px solid #4E75B9!important;
+}
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[15. Blockquote]
+*/
+
+
+blockquote {
+    margin: 50px 0 60px 0px!important;
+  }
+
+
+
+blockquote p {
+    display: inline;
+    margin: 0px!important;
+    font-size: 44px;
+    line-height:64px!important;
+    font-style: normal!important;
+    font-weight:bold;    
+    color:#313135;
+  }
+
+article.category-inspiration blockquote p {
+    box-shadow:
+    inset 0 -10px white,
+    inset 0 -18px #c0d53e;
+  }
+
+article.category-starting-your-business blockquote p {
+    box-shadow:
+    inset 0 -10px white,
+    inset 0 -18px #68b64d;
+  }
+
+article.category-business-tips blockquote p {
+    box-shadow:
+    inset 0 -10px white,
+    inset 0 -18px #57c097;
+  }
+
+article.category-website-tips blockquote p {
+    box-shadow:
+    inset 0 -10px white,
+    inset 0 -18px #00a8e3;
+  }
+
+article.category-news blockquote p {
+    box-shadow:
+    inset 0 -10px white,
+    inset 0 -18px #bda1c7;
+  }
+
+
+@media only screen and (max-width: 768px) {
+    blockquote p {
+        font-size: 22px!important;
+        line-height: 30px!important;
+        box-shadow: inset 0 -4px white, inset 0 -10px #c0d53e!important;       
+}
+}
+
+@media only screen and (min-width: 768px) and (max-width:1020px) {
+    blockquote p {
+        font-size: 28px!important;
+        line-height: 36px!important;
+        box-shadow: inset 0 -6px white, inset 0 -12px #c0d53e!important;       
+}
+}
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[16. Author box]
+*/
+
+article.category-inspiration .cb-article-footer .cb-post-block-bg {
+    background: #92BF33!important;
+}
+
+article.category-starting-your-business .cb-article-footer .cb-post-block-bg {
+    background: #68B64D!important;
+}
+
+article.category-business-tips .cb-article-footer .cb-post-block-bg {
+    background: #57C097!important;
+}
+
+article.category-website-tips .cb-article-footer .cb-post-block-bg {
+    background: #0DAAE2!important;
+}
+
+article.category-news .cb-article-footer .cb-post-block-bg {
+    background: #7f5295!important;
+}
+
+
+#cb-author-box .cb-title {
+    font-size: 36px!important;
+    letter-spacing: 0px!important;
+    font-weight: bold!important;
+    line-height: 1!important;
+}
+ 
+#cb-author-box .cb-title a {
+    color:#F4F5F9!important;
+}
+
+#cb-author-box .cb-author-position{
+    color:#F4F5F9!important;
+    font-size: 14px!important;
+    text-transform: none!important;
+    text-align: left!important;
+    letter-spacing: 0!important;
+}
+
+article.post #cb-author-box p,
+#cb-author-box .cb-author-bio {
+    color:#F4F5F9!important;
+    line-height: 1.33!important;}
+
+#cb-author-box .cb-author-bio a {
+    color:#F4F5F9!important;
+    text-decoration: underline;
+}
+
+#cb-author-box .cb-author-bio a:hover {
+    color:#F4F5F9!important;
+    text-decoration: underline;
+    font-weight: bold;
+}
+#cb-author-box .cb-contact-icon i {
+    color: #F4F5F9;
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[17. Author page]
+*/
+
+body.author.archive .cb-module-header {
+    display: none!important;
+}
+
+.cb-author-page .cb-author-details.cb-sidebar {
+    padding:30px!important;
+}
+
+.cb-author-details.cb-sidebar a {
+  color: #313135!important;
+}
+
+.cb-author-page .cb-author-bio {
+    font-size:16px!important;
+}
+
+#cb-content > div.cb-sticky-sidebar > div > div.cb-mask > a > img {width: 100px!important;}
+
+.cb-author-details.cb-sidebar h3 a,
+.cb-author-page h2.cb-post-title {
+    font-size: 24px!important;
+    line-height: 32px!important;
+    font-weight: bold!important;
+    text-transform: none!important;
+    text-align: left!important;
+    letter-spacing: 0!important;
+}
+
+
+.cb-author-page .cb-date{
+    color: #9499A9!important;
+    font-size: 12px!important;
+    line-height: 24px!important;
+    letter-spacing: 0!important;
+}
+
+body.archive.author article .cb-category.cb-element {
+    display: inline-block!important;
+}
+
+.cb-body-light .cb-pagination .current {
+    background: #ABB1C2!important   ;
+    border: 1px solid #ABB1C2!important;
+    color: #fff!important;
+    border-radius: 4px!important;
+}
+
+.cb-body-light .cb-pagination a {
+    color: #9499A7!important;
+    border: 1px solid #ABB1C2!important;
+    border-radius: 4px!important;
+}
+
+.cb-body-light .cb-pagination a:hover {
+    background: #ABB1C2!important   ;
+    border: 1px solid #ABB1C2!important;
+    color: #fff!important;
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[18. Related posts]
+*/
+
+#cb-related-posts-block h3.cb-title-header {
+    color:#313135!important;
+    font-size: 1em!important;
+    line-height:1.2!important;
+    text-transform: none!important;
+    font-weight: bold!important;
+    letter-spacing: 0!important;
+    border-bottom: 4px solid #313135!important;
+}
+
+#cb-related-posts-block .cb-post-title a {
+    color:#313135!important;
+    font-size: 20px!important;
+    line-height:1.2!important;
+    text-transform: none!important;
+    font-weight: bold!important;
+    letter-spacing: 0!important;
+}
+
+#cb-related-posts > div > ul > li div.cb-meta > div > span, 
+#cb-related-posts-block .cb-style-1 .cb-meta .cb-byline {
+    color:#9499A9!important;
+    font-size: 12px!important;
+    line-height:24px!important;
+    font-weight: bold!important;
+    letter-spacing: 0!important;
+}
+
+#cb-related-posts-block .cb-byline {
+    display: none!important;
+}
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[19. Comments]
+*/
+
+#comments > h3,
+#comments header > cite,
+#comments header > cite a,
+#comments #reply-title{
+    color: #313135!important;
+    font-size: 1em!important;
+    line-height: 1.77em!important;
+    font-weight: bold!important;
+    text-transform: none!important;
+    text-align: left!important;
+    letter-spacing: 0!important;
+}
+
+#comments > h3 {
+    margin-bottom: 10px!important;
+}
+
+#comments #reply-title{
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+#comments .comment-notes {
+    margin:0!important;
+    padding:0!important;
+    color: #313135!important;
+    font-size:16px!important;
+}
+
+
+.cb-comment-body .cb-gravatar-image {
+    display: none!important;
+}
+
+
+#comments .comment-reply-link, #comments #cancel-comment-reply-link {
+    color: #00A8E3!important;
+    font-size: 14px!important;
+    font-weight: normal!important;
+    text-transform: none!important;
+    text-align: left!important;
+    letter-spacing: 0!important;
+}
+
+#comments header > time{
+    color: #9499A9!important;
+    font-size: 12px!important;
+    font-weight: bold!important;
+    text-transform: uppercase;
+    letter-spacing: 0!important;
+}
+
+#comments .comment_content {
+    padding-left: 0!important;
+}
+
+.commentlist article {
+    border-bottom: 4px solid #F4F5F9!important;
+}
+
+
+#comments #commentform label {
+    color: #696C76!important;
+    font-size: 16px!important;
+    font-weight: normal!important;
+    text-transform: none!important;
+    text-align: left!important;
+    letter-spacing: 0!important;
+    margin: 0 0 5px 0;
+}
+
+#commentform .form-submit #submit {
+    color: #ffffff!important;
+    background: #00A8E3!important;
+    border:none!important;
+    box-shadow: inset 0 -3px 0 0 #1E8BC9!important;
+    line-height: 34px!important;
+    border-radius: 4px!important;
+    font-size: 16px!important;
+    letter-spacing: 0!important;
+    text-transform: none!important;
+    padding: 5px 20px 5px 20px!important;
+    transition: all 0.25s ease-out;
+
+}
+
+#commentform .form-submit #submit:hover,
+#commentform .form-submit #submit:focus,
+#commentform .form-submit #submit:active {
+    background-color: #1E8BC9!important;
+    box-shadow: inset 0 -3px 0 0 #006ea6!important;
+    color: #ffffff!important;
+}
+
+#comments #commentform input,
+#comments #comment {
+    background: #ffffff;
+    border:2px solid #CACEDC;
+    border-radius:4px;
+    color: #313135!important;
+    font-size: 16px!important;
+    text-transform: none!important;
+    line-height: 20px;
+    transition: all 0.25s ease-out;
+}
+
+#comments #commentform input{
+    padding: 10px 20px 10px 20px!important;}
+
+#comments #commentform textarea {
+    height: 200px!important;
+}
+
+#comments #commentform input:hover,
+#comments #comment:hover,
+#comments #commentform input:focus,
+#comments #comment:focus{
+    border-color: #a1daf0!important;
+    color: #313135!important;
+}
+
+
+#comments .comment_content p, #commentform > p.logged-in-as {
+    color: #313135!important;
+    font-size: 1em!important;
+    line-height: 1.77em!important;
+    font-weight: normal!important;
+    text-transform: none!important;
+    text-align: left!important;
+    letter-spacing: 0!important;
+}
+
+#comments .comment .comment-respond {
+    margin-top:60px;
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[20. Search]
+*/
+
+.cb-s-modal .cb-search-field {
+    letter-spacing: 0px!important;
+    color:#313135!important;
+}
+
+.search-results .cb-module-header p.cb-mini-title {
+	font-size: 12px!important;
+    color:#9499a9!important;
+	letter-spacing: 0px;
+	text-transform:uppercase!important;
+    font-weight: bold!important;
+}
+
+.search-results h2.cb-post-title {
+    font-size: 1.33em!important;
+    line-height: 1.33em!important;
+    letter-spacing: 0px!important;
+    text-transform:none!important;    
+}
+
+.search-results .cb-byline .cb-date {
+	letter-spacing:0px!important;;
+	text-align:left!important;;
+	color:#9499A9!important;
+	font-size:12px!important;
+}
+
+.search-results .cb-excerpt {
+	letter-spacing: 0px!important;
+	font-size:14px!important;
+	color:#313135!important;
+}
+
+
+
+
+.search-no-results .cb-module-header p.cb-mini-title {
+	font-size: 12px!important;
+    color:#9499a9!important;
+	letter-spacing: 0px;
+	text-transform:uppercase!important;
+    font-weight: bold!important;
+}
+
+
+.search-no-results h2
+{
+    text-align: center!important;
+    color: #313135!important;
+    font-size: 2.44em!important;
+    line-height: 1.27em!important;
+    font-weight: bold!important;
+    text-transform: none!important;
+    letter-spacing: 0!important;
+}
+
+
+.search-no-results .cb-404-page p {
+    text-transform: none!important;
+}
+
+.search-results article .cb-category {
+    display: none !important;   
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[21. 404 Page]
+*/
+
+
+body.error404 #cb-content.wrap {max-width: 800px!important;}
+
+body.error404 .cb-search .cb-search-field {
+    width: 100%!important;
+    font-size: 16px!important;
+    outline: none!important;
+    background: #ffffff!important;
+    border-bottom: 2px solid #4E5056!important;
+    color:#4E5056!important;
+    padding: 0px!important;
+    height: 45px!important;
+}
+
+body.error404 ::-webkit-input-placeholder { /* Chrome */
+  color: #4E5056!important;;
+}
+body.error404 :-ms-input-placeholder { /* IE 10+ */
+  color: #4E5056!important;;
+}
+body.error404 ::-moz-placeholder { /* Firefox 19+ */
+  color: #4E5056!important;;
+  opacity: 1;
+}
+body.error404 :-moz-placeholder { /* Firefox 4 - 18 */
+  color: #4E5056!important;;
+  opacity: 1;
+}
+
+
+body.error404 .widget_search .cb-search .cb-search-submit {
+    top: -17px!important;
+    width: 23px!important;
+}
+
+
+.cb-404-header h1 {
+    text-align: center!important;
+    color: #313135!important;
+    font-size: 2.44em!important;
+    line-height: 1.27em!important;
+    font-weight: bold!important;
+    text-transform: none!important;
+    letter-spacing: 0!important;
+}
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[22. Category pages]
+*/
+
+body.archive article .cb-category.cb-element,
+body.archive article .cb-comments.cb-element, .cb-no-more-posts {
+    display: none!important;
+}
+
+body.archive.category .cb-module-header p,
+body.archive.tag .cb-module-header p {
+	font-size: 18px!important;
+	color:#313135!important;
+	letter-spacing: 0px!important;
+	text-transform:none!important;
+	font-weight:400!important;
+    padding: 20px 0 20px!important;
+}
+
+
+body.archive.category h2.cb-post-title, 
+body.archive.tag h2.cb-post-title {
+    font-size: 1.33em!important;
+    line-height: 1.33em!important;
+    font-weight: bold!important;
+    text-transform: none!important;
+    text-align: left!important;
+    letter-spacing: 0!important;
+}
+
+
+body.archive.category .cb-main article.cb-article .cb-byline .cb-date,
+body.archive.tag .cb-main article.cb-article .cb-byline .cb-date {
+    color:#9499A9!important;
+    font-size: 12px!important;
+    line-height:24px!important;
+    letter-spacing: 0!important;
+}
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[23. CTAs in posts]
+*/
+
+
+/*********************
+Built-in buttons
+*********************/
+
+
+article.category-inspiration .cb-button a {
+    height: 56px !important;
+    line-height: 56px!important;
+    text-transform: uppercase !important;
+    letter-spacing: .0325em !important;
+    border-radius: 100px !important;
+    padding: 0 80px !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #ffffff!important;
+    margin: 0 !important;
+    border: none !important;
+    box-sizing: border-box!important;
+    text-decoration: none!important;
+    background-color: #c0d83f!important;
+    box-shadow: inset 0 -3px 0 0 #93BD3F!important;
+}
+
+article.category-inspiration .cb-button a:hover, article.category-inspiration .cb-button a:active, article.category-inspiration .cb-button a:focus,
+article.category-inspiration .cb-button.cb-white a:hover, article.category-inspiration .cb-button.cb-white a:active, article.category-inspiration .cb-button.cb-white a:focus {
+    background-color: #92BF33!important;
+    background: #92BF33!important;
+    color: #ffffff!important;
+    box-shadow: inset 0 -3px 0 0 #74A835!important;
+}
+
+
+article.category-starting-your-business .cb-button a {
+    height: 56px !important;
+    line-height: 56px!important;
+    text-transform: uppercase !important;
+    letter-spacing: .0325em !important;
+    border-radius: 100px !important;
+    padding: 0 80px !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #ffffff!important;
+    margin: 0 !important;
+    border: none !important;
+    box-sizing: border-box!important;
+    text-decoration: none!important;
+    background-color: #6bba4e!important;
+    box-shadow: inset 0 -3px 0 0 #419E39!important;
+}
+
+article.category-starting-your-business .cb-button a:hover, article.category-starting-your-business .cb-button a:active, article.category-starting-your-business .cb-button a:focus,
+article.category-starting-your-business .cb-button.cb-white a:hover, article.category-starting-your-business .cb-button.cb-white a:active, article.category-starting-your-business .cb-button.cb-white a:focus{
+    background-color: #419E39!important;
+    background: #419E39!important;
+    color: #ffffff!important;
+    box-shadow: inset 0 -3px 0 0 #318237!important;
+}
+
+
+article.category-business-tips .cb-button a {
+    height: 56px !important;
+    line-height: 56px!important;
+    text-transform: uppercase !important;
+    letter-spacing: .0325em !important;
+    border-radius: 100px !important;
+    padding: 0 80px !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #ffffff!important;
+    margin: 0 !important;
+    border: none !important;
+    box-sizing: border-box!important;
+    text-decoration: none!important;
+    background-color: #5cc398!important;
+    box-shadow: inset 0 -3px 0 0 #28A882!important;
+}
+
+article.category-business-tips .cb-button a:hover, article.category-business-tips .cb-button a:active, article.category-business-tips .cb-button a:focus,
+article.category-business-tips .cb-button.cb-white a:hover, article.category-business-tips .cb-button.cb-white a:active, article.category-business-tips .cb-button.cb-white a:focus{
+    background-color: #28A882!important;
+    background: #28A882!important;
+    color: #ffffff!important;
+    box-shadow: inset 0 -3px 0 0 #118A70!important;
+}
+
+
+article.category-website-tips .cb-button a {
+    height: 56px !important;
+    line-height: 56px!important;
+    text-transform: uppercase !important;
+    letter-spacing: .0325em !important;
+    border-radius: 100px !important;
+    padding: 0 80px !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #ffffff!important;
+    margin: 0 !important;
+    border: none !important;
+    box-sizing: border-box!important;
+    text-decoration: none!important;
+    background-color: #17a7e3!important;
+    box-shadow: inset 0 -3px 0 0 #1E8BC9!important;
+}
+
+article.category-website-tips  .cb-button a:hover, article.category-website-tips  .cb-button a:active, article.category-website-tips  .cb-button a:focus,
+article.category-website-tips  .cb-button.cb-white a:hover, article.category-website-tips  .cb-button.cb-white a:active, article.category-website-tips  .cb-button.cb-white a:focus{
+    background-color: #1E8BC9!important;
+    background: #1E8BC9!important;
+    color: #ffffff!important;
+    box-shadow: inset 0 -3px 0 0 #006EA6!important;
+}
+
+article.category-news .cb-button a {
+    height: 56px !important;
+    line-height: 56px!important;
+    text-transform: uppercase !important;
+    letter-spacing: .0325em !important;
+    border-radius: 100px !important;
+    padding: 0 80px !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #ffffff!important;
+    margin: 0 !important;
+    border: none !important;
+    box-sizing: border-box!important;
+    text-decoration: none!important;
+    background-color: #7f4d98!important;
+    box-shadow: inset 0 -3px 0 0 #6D3D80!important;
+}
+
+article.category-news  .cb-button a:hover, article.category-news  .cb-button a:active, article.category-news  .cb-button a:focus,
+article.category-news  .cb-button.cb-white a:hover, article.category-news  .cb-button.cb-white a:active, article.category-news  .cb-button.cb-white a:focus{
+    background-color: #6D3D80!important;
+    background: #6D3D80!important;
+    color: #ffffff!important;
+    box-shadow: inset 0 -3px 0 0 #5A2E73!important;
+}
+
+
+@media only screen and (max-width: 420px) {
+    
+    article.category-inspiration .cb-button a,
+    article.category-starting-your-business .cb-button a,
+    article.category-business-tips .cb-button a,
+    article.category-website-tips .cb-button a,
+    article.category-news .cb-button a
+        {
+            width:90%!important;
+            padding: 0 20px !important;
+    }
+}
+
+/*********************
+Jimdo specific
+*********************/
+
+
+#postcta-wrap {
+    padding: 20px 10px 30px;
+    Margin: 55px 0 40px;
+    display: block;
+    border-color: #fafafc;
+    background-color: #fafafc !important;
+    text-align: center;
+    width: 100%;
+    max-width: 100% !important;
+    background-repeat: repeat;
+}
+
+#postcta-wrap h4 {
+    
+    font-weight: bold;
+    font-family: "Brandon Text",sans-serif;
+    color: #313135!important;
+    font-size:22px;
+    font-weight: bold!important;
+    padding: 0 40px;
+    
+}
+
+#postcta-wrap .postcta {
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    color: #ffffff!important;
+    font-size: 16px;
+    background: #1BA9E1;
+    padding: 0px 30px;
+    height: 40px!important;
+    line-height: 38px;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: "Brandon Text",sans-serif;
+    text-decoration: none;
+    text-transform: none;
+    letter-spacing: 0px;
+    -webkit-box-shadow: inset 0 -3px 0 0 #1E8BC9;
+    box-shadow: inset 0 -3px 0 0 #1E8BC9;
+    transition: all 0.25s ease-out;
+}
+
+#postcta-wrap .postcta:hover {
+    background: #1E8BC9;
+    text-decoration: none;
+    -webkit-box-shadow: inset 0 -3px 0 0 #006EA6;
+    box-shadow: inset 0 -3px 0 0 #006EA6;
+}
+
+
+#postcta-wrap .dolphincta {
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    color: #ffffff!important;
+    font-size: 16px;
+    background: #4E75B9;
+    padding: 0px 30px;
+    height: 40px!important;
+    line-height: 38px;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: "Brandon Text",sans-serif;
+    text-decoration: none;
+    text-transform: none;
+    letter-spacing: 0px;
+    -webkit-box-shadow: inset 0 -3px 0 0 #455FA8;
+    box-shadow: inset 0 -3px 0 0 #455FA8;
+    transition: all 0.25s ease-out;
+}
+
+#postcta-wrap .dolphincta:hover {
+    background: #455FA8;
+    text-decoration: none;
+    -webkit-box-shadow: inset 0 -3px 0 0 #344A80;
+    box-shadow: inset 0 -3px 0 0 #344A80;
+}
+
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[24. specific posts]
+*/
+
+
+#post-937 > footer > div.cb-post-large.cb-post-footer-block.clearfix > a {
+    display: none!important;
+}
+
+@media only screen and (max-width: 480px) {
+    article.post .alignleft, article.post .alignright {
+        float: none!important;
+    }
+}
+
+.postid-925 .img-profile {
+    margin-top: 11px!important;
+}
+
+
+
+body.postid-4572 article.post .slideshow-window {
+    background-color: #f4f5f9;
+    border: 20px solid #f4f5f9;
+    border-radius: 0px;
+} 
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[25. Cookie banner]
+*/
+
+#catapult-cookie-bar .ctcc-inner span {
+    font-size: 14px;
+    font-family: "Brandon Text",sans-serif;
+}
+
+#catapult-cookie-bar .ctcc-inner #catapultCookie {
+    font-weight: bold;
+}
+
+#catapult-cookie-bar .ctcc-inner span  a{
+    text-decoration: underline;
+    font-family: "Brandon Text",sans-serif;
+}
+
+.has-cookie-bar #catapult-cookie-bar {
+    padding: 10px 20px 10px!important;
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[26. MEDIA]
+*/
+
+
+
+
+@media only screen and (max-width: 480px) {
+    body.home h2.cb-module-title {
+       line-height: 1.3!important;
+        font-size: 1em !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    body.archive.category div.cb-category-header {
+       margin-top:40px !Important;
+    }
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[27. HOMEPAGE BANNER]
+*/
+
+body.home #cb-section-a .cb-single-link, body.home #cb-section-a .cb-module-custom{
+    padding-top: 20px;
+}
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[28. Promote your website]
+*/
+
+.page-id-4692 .wpcf7-form-control.wpcf7-text, .page-id-4692 .wpcf7-form-control.wpcf7-textarea {
+  width: 100%;
+  height: 45px;
+  border: none;
+  background: #ffffff;
+  border:1px solid #CACEDC;
+  border-radius:4px;
+  padding: 20px;
+  color: #313135;
+  -webkit-transition: background 0.35s;
+  -transition: background 0.35s;
+  transition: background 0.35s;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.wpcf7-form-control.wpcf7-text:focus, .wpcf7-form-control.wpcf7-textarea:focus {
+  background: #ffffff !important;
+  outline: none;
+  border:1px solid #a1daf0;
+    
+}
+
+.wpcf7-form-control.wpcf7-text:invalid, .wpcf7-form-control.wpcf7-textarea:invalid {
+  outline: none;
+  background-color: #f6e7eb;
+  -ms-box-shadow: none;
+  box-shadow: none;
+}
+
+.page-id-4692 .wpcf7-form-control.wpcf7-textarea {
+  width: 100%;
+  height: 200px;
+}
+
+.page-id-4692 .wpcf7-form p {
+  font-size: 16px;
+  letter-spacing: 0px;
+  text-transform: none;
+  color: #313135;
+  display: block;
+  font-weight: 600;
+  margin: 30px 0;
+}
+
+.wpcf7-form-control.wpcf7-text:focus, .wpcf7-form-control.wpcf7-textarea:focus {
+  background-color: #f2f2f2;
+}
+
+.wpcf7-form-control-wrap {
+  display: block;
+  margin: 10px 0;
+}
+
+.page-id-4692 .wpcf7-submit {
+    
+    background: #00A8E3!important;
+    border:none!important;
+     box-shadow: inset 0 -3px 0 0 #1E8BC9!important;
+    
+    border-radius: 4px!important;
+  color: #ffffff !important;
+  letter-spacing: 0px;
+  text-transform: none;
+  margin: 0 0 20px 0;
+  display: block;
+  font-weight: 600;
+  font-size: 16px;
+  width: auto;
+  padding: 10px 20px;
+  margin: 0;
+  -webkit-transition: background 0.35s;
+  -transition: background 0.35s;
+  transition: background 0.35s;
+}
+
+
+.page-id-4692 .wpcf7-submit:hover {
+    background-color: #1E8BC9!important;
+    box-shadow: inset 0 -3px 0 0 #006ea6!important;
+    color: #ffffff!important;
+}
+
+
+ .page-id-4692 span.wpcf7-list-item {
+    margin: 0 0 0 0;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+
+.page-id-4692 .wpcf7-response-output {
+  font-size: 16px;
+    margin: 0;
+}
+
+.page-id-4692 div.wpcf7-validation-errors, .page-id-4692
+div.wpcf7-acceptance-missing {
+    border: 1px solid #FFDE8F;
+}
+
+
+.page-id-4692 div.wpcf7-mail-sent-ok {
+	border: 2px solid #A2CC70;
+}
+.page-id-4692 input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[28. Video Player]
+*/
+
+article.post .wp-video {
+    margin: 55px 0;
+}
+
+
+.mejs-container .mejs-controls {
+    background: #4E5056 !important;
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+[29. Anchor]
+*/
+
+.anchor-8days {
+    display: block;
+    position: relative;
+    top: -100px;
+    visibility: hidden;
+}

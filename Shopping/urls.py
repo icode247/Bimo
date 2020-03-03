@@ -17,8 +17,9 @@ from . views import (
     Customer_Logout,
     Customer_Signup,
     Add,
-    Order_summary,
+    #Order_summary,
     remove_from_Cart,
+    Payment
 
 
 )
@@ -26,9 +27,11 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('Cart/', Order_summary, name="Cart"),
+    path('Payment/',Payment.as_view(), name="Payment"),
+   #path('Cart/', Order_summary, name="Cart"),
+    path('Checkout/',Checkout.as_view(), name="Checkout"),
     path('Add/',Add.as_view(), name='Add'),
-    path('Checkout/',Checkout.as_view(), name='Checkout'),
+    path('Cart/',Cart.as_view(), name='Cart'),
     path('Contact/',Contact.as_view(), name='Contact'),
     path('About/', About.as_view(), name='About'),
     path('Phones/', Phones, name='Phone'),

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'stripe',
     'Shopping',
     'crispy_forms',
     'django.contrib.admin',
@@ -134,3 +135,6 @@ LOGIN_REDIRECT_URL = 'Index'
 LOGOUT_REDIRECT_URL = 'Index'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+STRIPE_SECRET_KEY = 'sk_test_uChGy6GzmmVavYxROVm8EoDR007pvJcBGs'
+STRIPE_PUBLISHABLE_KEY = '<pk_test_ZySQ4NtMPnYCd2dW4AwGK5kP00SZ9F87mp'

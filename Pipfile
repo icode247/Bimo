@@ -10,6 +10,8 @@ django = "*"
 django-crispy-forms = "*"
 gunicorn = "*"
 pil = "*"
+django-countries = "*"
+stripe = "*"
 
 [requires]
 python_version = "3.7"
