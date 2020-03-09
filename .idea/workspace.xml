@@ -23,23 +23,23 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/assets/css" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/assets" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\I_AM_ZION\Bimo\static\assets" />
       <recent name="C:\Users\I_AM_ZION\Bimo\static\assets\images" />
       <recent name="C:\Users\I_AM_ZION\Bimo\static\assets\scss" />
       <recent name="C:\Users\I_AM_ZION\Bimo\Shopping" />
       <recent name="C:\Users\I_AM_ZION\Bimo\Bimo" />
-      <recent name="C:\Users\I_AM_ZION\Bimo\BimoShop" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\I_AM_ZION\Bimo\static\assets" />
       <recent name="C:\Users\I_AM_ZION\Bimo\static\assets\css" />
       <recent name="C:\Users\I_AM_ZION\Bimo\static\assets\js" />
       <recent name="C:\Users\I_AM_ZION\Bimo\templates" />
       <recent name="C:\Users\I_AM_ZION\Bimo\static\assets\images" />
-      <recent name="C:\Users\I_AM_ZION\Bimo\templates\registration" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -119,16 +119,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Shopping/views.py</url>
-          <line>20</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

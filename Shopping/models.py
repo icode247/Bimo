@@ -2,28 +2,32 @@ from django.db import models
 from django.conf import settings
 import random
 from django.urls import reverse_lazy
-from django.shortcuts import get_list_or_404,reverse,render,redirect
+from django.shortcuts import get_list_or_404, reverse, render, redirect
 from django_countries.fields import CountryField
+from uuid import uuid4
 
-auto_generate_id = random.randint(12845,67590)
+auto_generate_id = random.randint(12845, 67590)
 auto_id = 'shop' + str(auto_generate_id)
 
-PRODUCT_ID = random.randint(123456,987654)
+PRODUCT_ID = random.randint(123456, 987654)
 
 PRODUCT_TYPE = [
-    ('FS',"Fashion"),
-    ('PT',"Phone & Tablets"),
-    ('EL',"Electronics"),
-    ('HO',"Home & Office"),
-    ('CP',"Computing"),
+    ('FS', "Fashion"),
+    ('PT', "Phone & Tablets"),
+    ('EL', "Electronics"),
+    ('HO', "Home & Office"),
+    ('CP', "Computing"),
 ]
 
-PRODUCT_SIZE =  [
-    ('SM',"Small"),
-    ('MD',"Medium"),
-    ('LG',"Large"),
-    ('VG',"Very Large"),
+PRODUCT_SIZE = [
+    ('SM', "Small"),
+    ('MD', "Medium"),
+    ('LG', "Large"),
+    ('VG', "Very Large"),
 ]
+
+def save_sample_with_uiid(instance, filname):
+    return '{}{}'.format(instance.slug,uuid4())
 
 class product(models.Model):
     slug = models.SlugField(default=PRODUCT_ID)
@@ -32,29 +36,31 @@ class product(models.Model):
     discount = models.FloatField(null=True, blank=True)
     P_type = models.CharField(choices=PRODUCT_TYPE, max_length=2)
     size = models.CharField(choices=PRODUCT_SIZE, max_length=2)
-    sample = models.ImageField()
+    sample = models.ImageField(upload_to=save_sample_with_uiid)
     Date = models.DateTimeField(auto_now=True)
     Time = models.TimeField(auto_now=True)
 
+    class Meta:
+        ordering = ['-Date']
+
     def __str__(self):
         return self.title
-    def get_absolute_url(self):
 
+    def get_absolute_url(self):
         return reverse('Product_Single', args=[str(self.slug)])
 
-
     def get_cart_url(self):
-        return reverse('add_to_cart', kwargs={'slug':self.slug})
+        return reverse('add_to_cart', kwargs={'slug': self.slug})
 
     def get_remove_cart(self):
-        return reverse('remove_cart', kwargs={'slug':self.slug})
+        return reverse('remove_cart', kwargs={'slug': self.slug})
 
 
 class OrderedItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     item = models.ForeignKey(product, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
-    #seize = models.CharField(max_length=100)
+    # seize = models.CharField(max_length=100)
     status = models.BooleanField(default=False)
 
     def __str__(self):
@@ -65,13 +71,14 @@ class OrderedItem(models.Model):
 
     def get_discount_price(self):
         if self.item.discount:
-           return self.quantity * self.item.discount
+            return self.quantity * self.item.discount
 
     def get_saved_amount(self):
-        return  self.item_total() - self.get_discount_price()
+        return self.item_total() - self.get_discount_price()
 
     def get_final_price(self):
         return self.item_total()
+
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -79,32 +86,32 @@ class Order(models.Model):
     date_ordered = models.DateTimeField(auto_now_add=True)
     status = models.BooleanField(default=False)
     billing_address = models.ForeignKey(
-        'BillingAddress',on_delete=models.SET_NULL, null=True, blank=True)
-    payment= models.ForeignKey(
-        'Payment',on_delete=models.SET_NULL, null=True, blank=True)
+        'BillingAddress', on_delete=models.SET_NULL, null=True, blank=True)
+    payment = models.ForeignKey(
+        'Payment', on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.user.username
 
     def get_total(self):
-
-        return sum([order_item.item.price * order_item.quantity +20 for order_item in self.items.all()])
-
+        return sum([order_item.item.price * order_item.quantity + 20 for order_item in self.items.all()])
 
 
 class BillingAddress(models.Model):
-        user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-        country = CountryField(multiple=False)
-        zip = models.CharField(max_length=10)
-        street_address = models.CharField(max_length=100)
-        apartment = models.CharField(max_length=100)
-        Town = models.CharField(max_length=100)
-        zip = models.CharField(max_length=100)
-        Phone = models.IntegerField()
-        Email = models.EmailField()
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    country = CountryField(multiple=False)
+    zip = models.CharField(max_length=10)
+    street_address = models.CharField(max_length=100)
+    apartment = models.CharField(max_length=100)
+    Town = models.CharField(max_length=100)
+    zip = models.CharField(max_length=100)
+    Phone = models.IntegerField()
+    Email = models.EmailField()
+    payment_type = models.CharField(max_length=2)
 
-        def __str__(self):
-            return self.user.username
+    def __str__(self):
+        return self.user.username
+
 
 class Payment(models.Model):
     strip_charge_id = models.CharField(max_length=50)
@@ -115,6 +122,7 @@ class Payment(models.Model):
     def __str__(self):
         self.user.username
 
+
 class Contact(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -122,10 +130,8 @@ class Contact(models.Model):
     message = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
 
-
     def __str__(self):
         return self.email
 
     def get_absolute_url(self):
         return reverse('Contact')
-

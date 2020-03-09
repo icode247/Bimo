@@ -1,26 +1,23 @@
 {% extends 'base.html'%}
 {% block header %}
 {% load static %}
- <link rel="stylesheet" href="{% static 'assets/style.css' %}">
+<link rel="stylesheet" href="{% static 'assets/style.css' %}">
 {% load crispy_forms_tags %}
 <body>
 <div id="login-page" style="background:url(); background-size: cover;">
-	  	<div class="container-fluid">
+    <div class="container-fluid">
 
-		      <form class="form-login" name="login" method="post">
-		        <h2 class="form-login-heading" style="background-color:orange">Create Product</h2>
-		        <div class="login-wrap">
-		           <form method="post" action="">
-    {% csrf_token %}
-    {{form|crispy}}
-</form>
+        <form class="form-login" name="login" method="post">
+            <h2 class="form-login-heading" style="background-color:orange">Create Product</h2>
+            <div class="login-wrap">
+                <form method="post" action="">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                </form>
 
-
-		        </div>
-
-
-	  	</div>
-	  </div>
+            </div>
+    </div>
+</div>
 
 
 {% endblock %}
