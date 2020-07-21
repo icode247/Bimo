@@ -14,12 +14,13 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from .forms import CheckoutForm
+from .forms import CheckoutForm, PaymentForm
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 import stripe
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import JsonResponse
+from django.template.loader import render_to_string
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 sripe_token_api = settings.STRIPE_SECRET_KEY
@@ -97,11 +98,13 @@ class Cart(LoginRequiredMixin, View):
             }
             return render(self.request, 'cart.html', context)
         except ObjectDoesNotExist:
-            return render(self.request, 'cart.html', context)
+            return render(self.request, 'cart.html')
 
 
 @login_required()
-def Add_To_Cart(request, slug):
+def Add_To_Cart(request):
+    mess = ''
+    slug = request.POST.get('slug')
     item = get_object_or_404(product, slug=slug)
     cart, created = OrderedItem.objects.get_or_create(item=item, user=request.user, status=False)
     qs = Order.objects.filter(user=request.user, status=False)
@@ -111,23 +114,42 @@ def Add_To_Cart(request, slug):
             cart.quantity += 1
             cart.save()
             messages.info(request, 'Cart was modified')
-            redirect('Product_Single', slug=slug)
+            mess = 'Cart was modified'
         else:
             order.items.add(cart)
             messages.info(request, 'Item was added to cart')
-            redirect('Product_Single', slug=slug)
+            mess = "Item was added to cart"
     else:
         order = Order.objects.create(user=request.user)
         order.items.add(cart)
         messages.info(request, 'Item was added to cart')
-        redirect('Product_Single', slug=slug)
+        mess = "Item was added to cart"
+        
+    if request.is_ajax():
+        html = render_to_string('cart-section.html',request=request)
+        return JsonResponse({'form':html,"mess":mess})
 
-    return redirect("Product_Single", slug=slug)
+@login_required()
+def Increment_cart(request):
+    mess = ''
+    slug = POST.get('slug')
+    quant = POST.get('quant')
+    qs = OrderedItem.objects.get(user=request.user,slug=item__slug)
+    if qs.exists():
+        user_order = qs[0]
+        user_order.quantity +=quant
+        user_order.save()
+        mess ='Cart was modified'
+    if request.is_ajax():
+        html = render_to_string('cart-section.html', request=request)
+        return JsonResponse({'form':html,'mess':mess})
+
 
 
 @login_required()
 def remove_from_Cart(request, slug):
     item = get_object_or_404(product, slug=slug)
+    order_item = OrderedItem.objects.get(user=request.user, item__slug=slug)
     qs = Order.objects.filter(user=request.user, status=False)
     if qs.exists():
         order = qs[0]
@@ -139,6 +161,8 @@ def remove_from_Cart(request, slug):
 
             messages.error(request, 'Item was removed from cart')
             order.items.remove(cart)
+            order_item.quantity = 1
+            order_item.save()
             redirect('Cart')
         else:
             redirect('Cart')
@@ -220,14 +244,14 @@ class Checkout(View):
                     zip=zip,
                     Phone=Phone,
                     Email=Email,
-                    payment_type = payment_type
+                    payment_type=payment_type
                 )
                 billing_address.save()
                 order.billing_address = billing_address
                 order.save()
                 if payment_type == 'PD':
-                     messages.success(self.request, "Your Order was successful, items will be delivered soon.")
-                     return redirect('Checkout')
+                    messages.success(self.request, "Your Order was successful, items will be delivered soon.")
+                    return redirect('Checkout')
 
                 else:
                     return redirect('Payment')
@@ -242,60 +266,64 @@ class Payment(View):
         return render(self.request, 'payment.html')
 
     def post(self, *args, **kwargs):
+        form = PaymentForm(self.request.POST)
         order = Order.objects.get(user=self.request.user, status=False)
-        token = self.request.POST.get('stripeToken')
         amount = order.get_total() * 100
+        if form.is_valid():
+            token = form.cleaned_data.get('stripeToken')
+            save = form.cleaned_data.get('save')
+            use_default = form.cleaned_data.get('use_default')
+            try:
+                charge = stripe.Charge.create(
+                    amount=amount,
+                    currency='usd',
+                    source=token,
+                )
+                payment = Payment()
+                payment.strip_charge_id = charge['id']
+                payment.user = self.request.user
+                payment.amount = amount
+                payment.save()
 
-        try:
-            charge = stripe.Charge.create(
-                amount=amount,
-                currency='usd',
-                source=token,
-            )
-            payment = Payment()
-            payment.strip_charge_id = charge['id']
-            payment.user = self.request.user
-            payment.amount = amount
-            payment.save()
+                order.status = True
+                order.payment = payment
 
-            order.status = True
-            order.payment = payment
+                messages.success(self.request, "You order was succesful")
+                return redirect('Cart')
+            except stripe.error.CardError as e:
+                # Since it's a decline, stripe.error.CardError will be caught
 
-            messages.success(self.request, "You order was succesful")
-            return redirect('Cart')
-        except stripe.error.CardError as e:
-            # Since it's a decline, stripe.error.CardError will be caught
+                print('Status is: %s' % e.http_status)
+                print('Type is: %s' % e.error.type)
+                print('Code is: %s' % e.error.code)
+                # param is '' in this case
+                print('Param is: %s' % e.error.param)
+                print('Message is: %s' % e.error.message)
+                return redirect('Payment')
+            except stripe.error.RateLimitError as e:
+                # Too many requests made to the API too quickly
+                messages.error(self.request, 'Rate limit error')
+                return redirect('Payment')
+            except stripe.error.InvalidRequestError as e:
+                # Invalid parameters were supplied to Stripe's API
+                messages.error(self.request, 'Invalid request eror')
+                return redirect('Payment')
+            except stripe.error.AuthenticationError as e:
+                # Authentication with Stripe's API failed
+                # (maybe you changed API keys recently)
+                messages.error(self.request, 'Authentification error')
+                return redirect('Payment')
+            except stripe.error.APIConnectionError as e:
+                # Network communication with Stripe failed
+                messages.error(self.request, 'Network error ')
+                return redirect('Payment')
+            except stripe.error.StripeError as e:
+                # Display a very generic error to the user, and maybe send
+                # yourself an email
+                messages.error(self.request, 'Stripe Error')
+                return redirect('Payment')
+            except Exception as e:
+                # Something else happened, completely unrelated to Stripe
+                messages.error(self.request, 'we have been notifeid, we will get back to you.')
+                return redirect('Payment')
 
-            print('Status is: %s' % e.http_status)
-            print('Type is: %s' % e.error.type)
-            print('Code is: %s' % e.error.code)
-            # param is '' in this case
-            print('Param is: %s' % e.error.param)
-            print('Message is: %s' % e.error.message)
-            return redirect('Payment')
-        except stripe.error.RateLimitError as e:
-            # Too many requests made to the API too quickly
-            messages.error(self.request, 'Rate limit error')
-            return redirect('Payment')
-        except stripe.error.InvalidRequestError as e:
-            # Invalid parameters were supplied to Stripe's API
-            messages.error(self.request, 'Invalid request eror')
-            return redirect('Payment')
-        except stripe.error.AuthenticationError as e:
-            # Authentication with Stripe's API failed
-            # (maybe you changed API keys recently)
-            messages.error(self.request, 'Authentification error')
-            return redirect('Payment')
-        except stripe.error.APIConnectionError as e:
-            # Network communication with Stripe failed
-            messages.error(self.request, 'Network error ')
-            return redirect('Payment')
-        except stripe.error.StripeError as e:
-            # Display a very generic error to the user, and maybe send
-            # yourself an email
-            messages.error(self.request, 'Stripe Error')
-            return redirect('Payment')
-        except Exception as e:
-            # Something else happened, completely unrelated to Stripe
-            messages.error(self.request, 'we have been notifeid, we will get back to you.')
-            return redirect('Payment')

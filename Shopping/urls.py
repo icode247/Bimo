@@ -19,6 +19,7 @@ from .views import (
     Add,
     # Order_summary,
     remove_from_Cart,
+    Increment_cart,
     Payment,
 
 )
@@ -26,6 +27,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
+    path('Increment_cart/',Increment_cart, name="Increment_cart"),
     path('Payment/', Payment.as_view(), name="Payment"),
     # path('Cart/', Order_summary, name="Cart"),
     path('Checkout/', Checkout.as_view(), name="Checkout"),
@@ -37,7 +39,7 @@ urlpatterns = [
     path('Home_Office/', Home_Office, name='Home'),
     path('Computing/', Computing, name='Computing'),
     path('Electronics/', Electronics, name='Electronics'),
-    path('add_to_cart/<slug>', Add_To_Cart, name='add_to_cart'),
+    path('add_to_cart/', Add_To_Cart, name='add_to_cart'),
     path('remove_from_cart/<slug>', remove_from_Cart, name='remove_cart'),
     path('Fashion/<slug>', Product_Single.as_view(), name='Product_Single'),
     path('Fashion/', Fashion.as_view(), name='Fashion'),
@@ -45,4 +47,5 @@ urlpatterns = [
     path('', Customer_Login, name='home'),
     path('Logout/', Customer_Logout, name='Logout'),
     path('Home/', Index.as_view(), name='Index'),
+    path('Reset_Password/', include("django.contrib.auth.urls"), name= 'Forgot_Password'),
 ]

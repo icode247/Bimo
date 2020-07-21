@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bimo</title>
+    <title>{%block title%}{% endblock%}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -26,54 +26,43 @@
 
     <link rel="stylesheet" href="{% static 'assets/css/flaticon.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/icomoon.css' %}">
-
-    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 </head>
 
 <body class="goto-here">
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">Bimo</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="oi oi-menu"></span> Menu
-        </button>
-        <div class="collapse navbar-collapse" id="ftco-nav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="{% url 'Index' %}" class="nav-link">Home</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
-                       aria-haspopup="false" aria-expanded="true">Product</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        <a class="dropdown-item" href="{% url 'Fashion'%}">Fashion</a>
-                        <a class="dropdown-item" href="{% url 'Computing'%}">Computing</a>
-                        <a class="dropdown-item" href="{% url 'Phone'%}">Phone & Tablets</a>
-                        <a class="dropdown-item" href="{% url 'Electronics'%}">Electronics</a>
-                        <a class="dropdown-item" href="{% url 'Home'%}">Home & Office</a>
-                    </div>
-                </li>
-                <li class="nav-item"><a href="{% url 'About' %}" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="{% url 'Contact' %}" class="nav-link">Contact</a></li>
-                <li class="nav-item cta cta-colored"><a href="{% url 'Cart' %}" class="nav-link"><span
-                        class="icon-shopping_cart"></span>[{{request.user|cart_item_count}}]</a></li>
-                <br>
-                <form action="{% url 'Logout' %}" method="post">{% csrf_token %}
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <button type="submit" class="btn btn-danger">Logout</button>
-                        </a></li>
-                </form>
-                {% else %}
-                <li class="nav-item"><a href="{% url 'home' %}">
-                    <button type="submit" class="btn btn-info">Login</button>
-                </a></li>
-                {% endif %}
+        <a id="cart-item-section">
+                {% include 'cart-section.html'%}
+              </an>
 
-            </ul>
-        </div>
-    </div>
-</nav>
+<style type="text/css">
+.dropdown-me{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, .15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+          
+}
+#dropdown04{
+    cursor:pointer
+}
+
+</style>
 <!-- END nav -->
 {% block header %}
 
@@ -96,3 +85,11 @@
 <script src="{% static 'assets/js/google-map.js' %}"></script>
 <script src="{% static 'assets/js/main.js' %}"></script>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#dropdown04").click(function(event){
+            event.preventDefault();
+            $(".dropdown-me").toggle();
+        });
+    });
+</script>

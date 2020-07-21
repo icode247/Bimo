@@ -120,6 +120,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -132,3 +134,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 STRIPE_SECRET_KEY = 'sk_test_uChGy6GzmmVavYxROVm8EoDR007pvJcBGs'
 STRIPE_PUBLISHABLE_KEY = 'pk_test_ZySQ4NtMPnYCd2dW4AwGK5kP00SZ9F87mp'
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

@@ -23,23 +23,23 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/assets" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Chat" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\I_AM_ZION\Bimo\static\assets\css" />
+      <recent name="C:\Users\I_AM_ZION\Bimo\static\assets" />
+      <recent name="C:\Users\I_AM_ZION\Bimo\static\assets\js" />
+      <recent name="C:\Users\I_AM_ZION\Bimo\templates" />
+      <recent name="C:\Users\I_AM_ZION\Bimo\static\assets\images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\I_AM_ZION\Bimo\templates" />
       <recent name="C:\Users\I_AM_ZION\Bimo\static\assets" />
       <recent name="C:\Users\I_AM_ZION\Bimo\static\assets\images" />
       <recent name="C:\Users\I_AM_ZION\Bimo\static\assets\scss" />
       <recent name="C:\Users\I_AM_ZION\Bimo\Shopping" />
-      <recent name="C:\Users\I_AM_ZION\Bimo\Bimo" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\I_AM_ZION\Bimo\static\assets" />
-      <recent name="C:\Users\I_AM_ZION\Bimo\static\assets\css" />
-      <recent name="C:\Users\I_AM_ZION\Bimo\static\assets\js" />
-      <recent name="C:\Users\I_AM_ZION\Bimo\templates" />
-      <recent name="C:\Users\I_AM_ZION\Bimo\static\assets\images" />
     </key>
   </component>
   <component name="RunDashboard">
