@@ -26,6 +26,17 @@ PRODUCT_SIZE = [
     ('VG', "Very Large"),
 ]
 
+PRODUCT_COLORS =[
+    ('RED', "Red"),
+    ('BLU', "Blue"),
+    ('BLK', "Black"),
+    ('ORG', "Orange"),
+    ('PIN', "Pink"),
+    ('PUR', "Purple"),
+    ('BRW', "Brown"),
+    ('CRM', ""),
+]
+
 def save_sample_with_uiid(instance, filname):
     return '{}{}'.format(instance.slug,uuid4())
 
@@ -35,8 +46,8 @@ class product(models.Model):
     price = models.FloatField()
     discount = models.FloatField(null=True, blank=True)
     P_type = models.CharField(choices=PRODUCT_TYPE, max_length=2)
-    size = models.CharField(choices=PRODUCT_SIZE, max_length=2)
     sample = models.ImageField(upload_to=save_sample_with_uiid)
+    available_item = models.IntegerField()
     Date = models.DateTimeField(auto_now=True)
     Time = models.TimeField(auto_now=True)
 
@@ -60,7 +71,7 @@ class OrderedItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     item = models.ForeignKey(product, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
-    # seize = models.CharField(max_length=100)
+    size = models.IntegerField(default=0)
     status = models.BooleanField(default=False)
 
     def __str__(self):
@@ -93,8 +104,12 @@ class Order(models.Model):
     def __str__(self):
         return self.user.username
 
-    def get_total(self):
-        return sum([order_item.item.price * order_item.quantity + 20 for order_item in self.items.all()])
+    def get_sub_total(self):
+        return sum([order_item.item.price * order_item.quantity for order_item in self.items.all()])
+    
+    def get_total_price(self):
+         return sum([order_item.item.price * order_item.quantity + 1500 for order_item in self.items.all()])
+    
 
 
 class BillingAddress(models.Model):

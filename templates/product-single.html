@@ -2,72 +2,66 @@
 {% block header %}
 {% load static %}
 {% load cart_template_tags%}
-{{mess}}
-<section class="ftco-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 mb-5 ftco-animate">
-                <center><a href="images/product-1.png" class="image-popup prod-img-bg"><img src="{{object.sample.url}}"
-                                                                                            class="img-fluid"
-                                                                                            alt="sample"></a>
-                </center>
-            </div>
-
-            <div class="col-lg-8 product-details pl-md-5 ftco-animate">
-                
-               
-                <div class="alert alert-success alert-dismissible" style="display: none" id="alert">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>{{message}}</strong>
-                </div>
-               
-               
-                <h3>{{object.title}}</h3>
-                <div class="rating d-flex">
-                    <p class="text-left mr-4">
-                        <a href="#" class="mr-2">5.0</a>
-                        <a href="#"><span class="ion-ios-star-outline"></span></a>
-                        <a href="#"><span class="ion-ios-star-outline"></span></a>
-                        <a href="#"><span class="ion-ios-star-outline"></span></a>
-                        <a href="#"><span class="ion-ios-star-outline"></span></a>
-                        <a href="#"><span class="ion-ios-star-outline"></span></a>
-                    </p>
-                    <p class="text-left mr-4">
-                        <a href="#" class="mr-2" style="color: #000;">100 <span style="color: #bbb;">Rating</span></a>
-                    </p>
-                    <p class="text-left">
-                        <a href="#" class="mr-2" style="color: #000;">500 <span style="color: #bbb;">Sold</span></a>
-                    </p>
-                </div>
-                <p class="price"><span>${{object.price}}</span></p>
-                <p>{{object.description}}</p>
-                <div class="row mt-4">
-                    <div class="col-md-6">
-                        <div class="form-group d-flex">
-                            <div class="select-wrap">
-
+ <section class="ftco-section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 mb-5 ftco-animate">
+                                <a href="images/product-1.png" class="image-popup prod-img-bg"><img src="{{object.sample.url}}" class="img-fluid" height="60"></a>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-md-6">
-                            <div class="form-group d-flex">
-                                <div class="select-wrap">
-                                    <div class="icon"><span class="ion-ios-arrow-do"></span></div>
-                                    <form method="post">
+                            <div class="col-lg-8 product-details pl-md-5 ftco-animate">
+                                
+                            <div class="alert alert-success alert-dismissible" style="display: none" id="alert">
+                               <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                               <strong id='message'></strong>
+                            </div>
+                                <h3>{{object.title}}</h3>
+                                <div class="rating d-flex">
+                                        <p class="text-left mr-4">
+                                            <a href="#" class="mr-2">5.0</a>
+                                            <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                            <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                            <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                            <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                            <a href="#"><span class="ion-ios-star-outline"></span></a>
+                                        </p>
+                                        <p class="text-left mr-4">
+                                            <a href="#" class="mr-2" style="color: #000;">100 <span style="color: #bbb;">Rating</span></a>
+                                        </p>
+                                    </div>
+                                <p class="price"><span>N{{object.price}}</span></p>
+                               
+                                    <div class="row mt-4">
+                                        <div class="col-md-6">
+                                            <div class="form-group d-flex">
+                                  <div class="select-wrap">
+                                  <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                  <select name="" id="size" class="form-control">
+                                     <option value="0">Select Size </option>
+                                     <option value="20">20</option>
+                                    <option value="40">40</option>
+                                    <option value="50">50</option>
+                                    <option value="60">60</option>
 
-                                    </form>
+                                  </select>
                                 </div>
+                                </div>
+                                        </div>
+                                        <div class="w-100"></div>
+                                        <div class="input-group col-md-4 d-flex mb-3">
+                                
+                                     <input type="number" id="quantity" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
+                                 
+                              </div>
+                              <div class="w-100"></div>
+                              <div class="col-md-12">
+                                  <p style="color: #000;">{{object.available_item}} piece available</p>
+                              </div>
+                          </div>
+                          <p><a class="btn btn-black py-3 px-5 mr-2" value={{object.slug}} id='add_to_cart'>Add to Cart<a href="{% url 'Cart'%}"
+                            class="btn btn-primary py-3 px-5">Buy
+now</a></p>
                             </div>
                         </div>
-                    </div>
-                </div>
-                    <p><a class="btn btn-black py-3 px-5 mr-2" value={{object.slug}} id='add_to_cart'>Add to Cart<a href="{% url 'Cart'%}"
-                                                                                                  class="btn btn-primary py-3 px-5">Buy
-                        now</a></p>
-                </div>
-            </div>
-
 
             <div class="row mt-5">
                 <div class="col-md-12 nav-link-wrap">
@@ -336,35 +330,45 @@
 
 <script src="{% static 'assets/js/jquery.min.js' %}"></script>
 <script>
-    $(document).ready(function(){
-        $(document).on('click','#add_to_cart',function(event){
-            event.preventDefault();
-            var slug = $(this).attr('value');
+$(document).ready(function(event){
+    $(document).on('click','#add_to_cart',function(event){
+        event.preventDefault();
+        var slug = $(this).attr('value');
+        var quantity = $('#quantity').val();
+        var size = $('#size').val();
+        
+        if (size ==0){
+            $('#alert').fadeIn('fast');
+            $('#alert').removeClass('alert-success');
+            $("#alert").addClass('alert-danger');
+            $("#message").html('Select your prefered size');
 
-            $.ajax({
-              type: 'POST',
-              url : '{% url "add_to_cart" %}',
-              data : {
-                  'slug':slug,
-                  'csrfmiddlewaretoken':'{{csrf_token}}'
-              },
-              dataType : 'json',
-              success : function(response){
-                  $('#cart-item-section').html(response['form']);
-                  $('#alert').fadeIn('fast');
-                  $('#alert').text(response['mess'])
-                  
-
-              },
-              error : function(rs, e){
-                  console.log(res.responseText)
-
-              }
-
-            });
-        });
-
+        }else{          
+           $.ajax({
+                type: 'POST',
+                url : '{% url "add_to_cart" %}',
+                data : {
+                   'slug':slug,
+                   'quantity':quantity,
+                   'size':size,
+                   'csrfmiddlewaretoken':'{{csrf_token}}'
+                },
+                dataType : 'json',
+                success : function(response){
+                   $('#cart-item-section').html(response['form']);
+                   $('#alert').removeClass('alert-danger');
+                   $("#alert").addClass('alert-success');
+                   $('#alert').fadeIn('fast');
+                   $('#message').html(response['mess'])   
+               },
+               error : function(rs, e){
+                   console.log(res.responseText)
+               }
+           });
+        }
     });
+
+});
 </script>
 
 {% endblock %}

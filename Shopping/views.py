@@ -105,24 +105,28 @@ class Cart(LoginRequiredMixin, View):
 def Add_To_Cart(request):
     mess = ''
     slug = request.POST.get('slug')
+    quantity = request.POST.get('quantity')
+    size = request.POST.get('size')
+
     item = get_object_or_404(product, slug=slug)
     cart, created = OrderedItem.objects.get_or_create(item=item, user=request.user, status=False)
     qs = Order.objects.filter(user=request.user, status=False)
     if qs.exists():
         order = qs[0]
         if order.items.filter(item__slug=item.slug).exists():
-            cart.quantity += 1
-            cart.save()
-            messages.info(request, 'Cart was modified')
-            mess = 'Cart was modified'
+            mess = 'Item already in cart '
         else:
+            cart.quantity = quantity
+            cart.size = size
+            cart.save()
             order.items.add(cart)
-            messages.info(request, 'Item was added to cart')
             mess = "Item was added to cart"
     else:
+        cart.quantit = quantity
+        cart.size = size
+        cart.save()
         order = Order.objects.create(user=request.user)
         order.items.add(cart)
-        messages.info(request, 'Item was added to cart')
         mess = "Item was added to cart"
         
     if request.is_ajax():
@@ -130,24 +134,8 @@ def Add_To_Cart(request):
         return JsonResponse({'form':html,"mess":mess})
 
 @login_required()
-def Increment_cart(request):
-    mess = ''
-    slug = POST.get('slug')
-    quant = POST.get('quant')
-    qs = OrderedItem.objects.get(user=request.user,slug=item__slug)
-    if qs.exists():
-        user_order = qs[0]
-        user_order.quantity +=quant
-        user_order.save()
-        mess ='Cart was modified'
-    if request.is_ajax():
-        html = render_to_string('cart-section.html', request=request)
-        return JsonResponse({'form':html,'mess':mess})
-
-
-
-@login_required()
 def remove_from_Cart(request, slug):
+
     item = get_object_or_404(product, slug=slug)
     order_item = OrderedItem.objects.get(user=request.user, item__slug=slug)
     qs = Order.objects.filter(user=request.user, status=False)
@@ -159,14 +147,15 @@ def remove_from_Cart(request, slug):
                 user=request.user,
                 status=False)[0]
 
-            messages.error(request, 'Item was removed from cart')
+            messages.info = (request, 'Item was removed from cart')
             order.items.remove(cart)
             order_item.quantity = 1
-            order_item.save()
-            redirect('Cart')
+            order_item.save()  
+            return redirect('Cart')   
         else:
-            redirect('Cart')
-    return redirect("Cart")
+            return redirect('Cart')
+    return redirect('Cart')
+   
 
 
 def Customer_Signup(request):
@@ -199,8 +188,7 @@ def Customer_Login(request):
 
 
 def Customer_Logout(request):
-    if request.method == "POST":
-        logout(request)
+    logout(request)
     return redirect('home')
 
 
@@ -255,8 +243,10 @@ class Checkout(View):
 
                 else:
                     return redirect('Payment')
-            messages.success(self.request, "Sorry, Enter valid details.")
+            
             return redirect('Checkout')
+            form = CheckoutForm()
+            messages.success(self.request, "Sorry, Enter valid details.")
         except ObjectDoesNotExist:
             return redirect('Payment')
 

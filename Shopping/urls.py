@@ -19,7 +19,6 @@ from .views import (
     Add,
     # Order_summary,
     remove_from_Cart,
-    Increment_cart,
     Payment,
 
 )
@@ -27,7 +26,6 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('Increment_cart/',Increment_cart, name="Increment_cart"),
     path('Payment/', Payment.as_view(), name="Payment"),
     # path('Cart/', Order_summary, name="Cart"),
     path('Checkout/', Checkout.as_view(), name="Checkout"),

@@ -2,55 +2,13 @@
 {% block header %}
 {% load static %}
 {% load cart_template_tags %}
-<script src="{% static 'assets/js/jquery.min.js' %}"></script>
-<script>
-		$(document).ready(function(){
-            function modify_cart(quantitiy) {
-               
-                   var quant = $(this).val();
-                   alert(quant);
-                 
-            } 
-		   var quantitiy=0;
-		   $('.quantity-right-plus').click(function(e){
-		        
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		            
-		            $('#quantity').val(quantity + 1);
 
-		          
-		            // Increment
-		        
-		    });
 
-		     $('.quantity-left-minus').click(function(e){
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		      
-		            // Increment
-		            if(quantity>0){
-		            $('#quantity').val(quantity - 1);
-		            }
-		    });
-		    
-		});
-
-</script>
-
-<div class="hero-wrap hero-bread" style="background-image: url('/static/assets/images/hero-3.jpg');">
+<div class="hero-wrap hero-bread" style="background-image: url('/static/assets/images/image_3.jpg'); background-size: cover">
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
-                <h1 class="mb-0 bread" style="color:white">My Wish list</h1>
+                <h1 class="mb-0 bread">My Wish list</h1>
             </div>
         </div>
     </div>
@@ -69,6 +27,7 @@
                             <th>Product</th>
                             <th>Price</th>
                             <th>Quantity</th>
+                            <th>Size</th>
                             <th>Total</th>
                         </tr>
                         </thead>
@@ -100,12 +59,9 @@
 
                             <td class="price">${{order_item.item.price}}</td>
 
-                            <td class="quantity">
-                                <div class="input-group mb-3">
-                                    <input type="text" name="quantity" class="quantity form-control input-number"
-                                           value="{{order_item.quantity}}" min="1" max="100" id="cart_quant" onblur=" $.ajax({type:'POST', data:{'quant':quant},success:function(response){$('#cart-item-section').html(response['form']);}});">
-                                </div>
-                            </td>
+                            <td class="quantity">{{order_item.quantity}}</td>
+
+                            <td class="quantity">{{order_item.size}}</td>
 
                             <td class="total">${{order_item.item_total}}</span></td>
                         </tr><!-- END TR-->
@@ -121,12 +77,16 @@
                 <div class="cart-total mb-3">
                     <h3>Cart Totals</h3>
                     <p class="d-flex">
+                            <span>Sub Total</span>
+                            <span>N{{object.get_sub_total}}</span>
+                        </p>
+                    <p class="d-flex">
                         <span>Delivery</span>
-                        <span>$20.00</span>
+                        <span>N1500.00</span>
                     </p>
                     <p class="d-flex total-price">
                         <span>Total</span>
-                        <span>${{object.get_total}}</span>
+                        <span>N{{object.get_total_price}}</span>
                     </p>
                 </div>
                 <p class="text-center"><a href="{% url 'Checkout'%}" class="btn btn-primary py-3 px-4">Proceed to
@@ -285,5 +245,41 @@
                 stroke="#F96D00"/>
     </svg>
 </div>
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script>
+	
+		   var quantitiy=0;
+		   $('.quantity-right-plus').click(function(e){
+		        
+		        // Stop acting like a button
+		        e.preventDefault();
+		        // Get the field name
+		        var quantity = parseInt($('#quantity').val());
+		        
+		        // If is not undefined
+		            
+		            $('#quantity').val(quantity + 1);
 
+		          
+		            // Increment
+		        
+		    });
+
+		     $('.quantity-left-minus').click(function(e){
+		        // Stop acting like a button
+		        e.preventDefault();
+		        // Get the field name
+		        var quantity = parseInt($('#quantity').val());
+		        
+		        // If is not undefined
+		      
+		            // Increment
+		            if(quantity>0){
+		            $('#quantity').val(quantity - 1);
+		            }
+		    });
+		  a =  modify_cart;
+		});
+
+</script>
 {% endblock %}

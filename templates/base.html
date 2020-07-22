@@ -30,12 +30,13 @@
 </head>
 
 <body class="goto-here">
-        <a id="cart-item-section">
-                {% include 'cart-section.html'%}
-              </an>
+        <div id="cart-item-section">
+                {% include 'cart-section.html' %}
+               </div>
 
+                   
 <style type="text/css">
-.dropdown-me{
+.dropdown-me , .dropdown-user{
   position: absolute;
   top: 100%;
   left: 0;
@@ -58,7 +59,7 @@
           box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
           
 }
-#dropdown04{
+#dropdown04 , #dropdown0{
     cursor:pointer
 }
 
@@ -86,10 +87,14 @@
 <script src="{% static 'assets/js/main.js' %}"></script>
 
 <script type="text/javascript">
-    $(document).ready(function(){
+  
         $("#dropdown04").click(function(event){
             event.preventDefault();
             $(".dropdown-me").toggle();
         });
-    });
+        $("#dropdown0").click(function(event){
+            event.preventDefault();
+            $(".dropdown-user").toggle();
+        });
+    
 </script>
