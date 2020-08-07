@@ -21,6 +21,7 @@ import stripe
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import JsonResponse
 from django.template.loader import render_to_string
+import datetime as dt
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 sripe_token_api = settings.STRIPE_SECRET_KEY
@@ -84,17 +85,14 @@ class Contact(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 # success_message = 'Message successfully sent, We will get back to you'
 
 
-class Cart(LoginRequiredMixin, ListView):
-    model = OrderedItem
-    template_name = 'cart.html'
-
-
 class Cart(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         try:
+            delivery_date = dt.date.today() + dt.timedelta(days = 7)
             order = Order.objects.get(user=self.request.user, status=False)
             context = {
-                'object': order
+                'delivery_date':delivery_date,
+                'object': order,
             }
             return render(self.request, 'cart.html', context)
         except ObjectDoesNotExist:
